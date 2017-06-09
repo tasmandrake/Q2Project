@@ -1,5 +1,5 @@
 # ERD
-
+![erd](LiveNote.png)
 
 # Project planner
 https://waffle.io/speichs/Q2Project
