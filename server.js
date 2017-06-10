@@ -28,12 +28,12 @@ app.use((req, res) => {
   res.sendStatus(404);
 });
 
-app.use((err, req, res, next) {
+app.use((err, req, res, next) => {
   console.error(err.stack);
   res.sendStatus(500);
 });
 
-app.listen(port, ()=>{
+app.listen(port, () => {
   console.log('Listening on port ' + port);
 });
 
