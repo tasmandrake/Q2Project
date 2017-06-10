@@ -1,0 +1,34 @@
+{
+  "name": "Q2Project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/speichs/Q2Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/speichs/Q2Project/issues"
+  },
+  "homepage": "https://github.com/speichs/Q2Project#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.3",
+    "humps": "^2.0.0",
+    "jsonwebtoken": "^7.4.1",
+    "knex": "^0.13.0",
+    "pg": "^6.2.4"
+  }
+}
