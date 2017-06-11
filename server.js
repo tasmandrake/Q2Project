@@ -15,11 +15,13 @@ const port = process.env.PORT || 8000;
 const notes = require('./routes/notes');
 const users = require('./routes/users');
 const videos = require('./routes/videos');
+const tokens = require('./routes/tokens');
 
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static('public'));
 
+app.use(tokens);
 app.use(notes);
 app.use(users);
 app.use(videos);
