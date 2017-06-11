@@ -12,20 +12,18 @@ router.use((req, res, next) => {
 });
 
 router.get('/notes', (req, res, next) => {
+  const userId = req.user.id;
+
   knex('notes')
-    .select(
-      'id',
-      'title',
-      'note_file',
-      'user_id',
-      'video_id'
-    )
+    .select('*')
+    .where('user_id', userId)
     .then((notes) => res.send(notes))
     .catch((error) => console.error(error));
 });
 
 router.get('/notes/:id', (req, res, next) => {
   const id = req.params.id;
+  const userId = req.user.id;
 
   knex('notes')
 
@@ -39,6 +37,7 @@ router.get('/notes/:id', (req, res, next) => {
     'video_id'
   )
   .where('id', id)
+  .where('user_id', userId)
   .then((note) => {
     if (!note.length) {
       return res.status(404)
@@ -80,9 +79,11 @@ router.post('/notes', (req, res, next) => {
 
 router.patch('/notes/:id', (req, res, next) => {
   const body = req.body;
+  const userId = req.user.id;
 
   knex('notes')
     .update(body)
+    .where('user_id', userId)
     .then((updatedNote) => {
       // res.sendStatus(200) or res.redirect()
     })
@@ -91,10 +92,12 @@ router.patch('/notes/:id', (req, res, next) => {
 
 router.delete('/notes/:id', (req, res, next) => {
   const id = req.params.id;
+  const userId = req.user.id;
 
   knex('notes')
     .del()
     .where('id', id)
+    .where('user_id', userId)
     .then((deletedNote) => {
       if (!deletedNote) {
         return res.status(404)
