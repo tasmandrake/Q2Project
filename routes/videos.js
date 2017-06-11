@@ -2,8 +2,6 @@
 
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const knex = require('../knex');
 
 router.use((req, res, next) => {
@@ -17,8 +15,8 @@ router.use((req, res, next) => {
 router.get('/videos', (req, res, next) => {
   knex('videos')
     .select('*')
-    .then((videos) => res.send(videos))
-    .catch((error) => console.error(error));
+    .then(videos => res.send(videos))
+    .catch(error => console.error(error));
 });
 
 router.get('/videos/:id', (req, res, next) => {
@@ -56,10 +54,10 @@ router.post('/videos', (req, res, next) => {
       // res.send() or res.redirect
       res.send(newVideos);
     })
-    .catch((error) => console.error(error));
+    .catch(error => console.error(error));
 });
 
-router.patch('/videos/:id', (req, res, next)=>{
+router.patch('/videos/:id', (req, res, next) => {
   const body = req.body;
   const id = req.params.id;
 
@@ -77,7 +75,7 @@ router.patch('/videos/:id', (req, res, next)=>{
       // res.send() or res.redirect
       res.send(updateVideo);
     })
-    .catch((error) => console.error(error));
+    .catch(error => console.error(error));
 });
 
 
@@ -99,7 +97,7 @@ router.delete('/videos/:id', (req, res, next) => {
       res.send(deletedVideo);
       // res.redirect('../public/userpage.html');
     })
-    .catch((error) => console.error(error));
+    .catch(error => console.error(error));
 });
 
 module.exports = router;

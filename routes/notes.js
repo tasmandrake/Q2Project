@@ -1,7 +1,7 @@
+'use strict';
+
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const knex = require('../knex');
 
 router.use((req, res, next) => {
@@ -17,8 +17,8 @@ router.get('/notes', (req, res, next) => {
   knex('notes')
     .select('*')
     .where('user_id', userId)
-    .then((notes) => res.send(notes))
-    .catch((error) => console.error(error));
+    .then(notes => res.send(notes))
+    .catch(error => console.error(error));
 });
 
 router.get('/notes/:id', (req, res, next) => {
@@ -37,14 +37,15 @@ router.get('/notes/:id', (req, res, next) => {
           .send('Not Found');
       }
       res.send(note);
-    }).catch((error) => console.error(error));
+    })
+    .catch(error => console.error(error));
 });
 
 router.post('/notes', (req, res, next) => {
   const body = req.body;
   const userId = req.user.id;
 
-  //where are we going to pull the video id from so that it is automatic
+  // where are we going to pull the video id from so that it is automatic
   const videoId = 3;
 
   if (!body.title) {
@@ -69,7 +70,7 @@ router.post('/notes', (req, res, next) => {
       // res.sendStatus(200) or res.redirect()
       res.send(newNote);
     })
-    .catch((error) => console.error(error));
+    .catch(error => console.error(error));
 });
 
 router.patch('/notes/:id', (req, res, next) => {
@@ -91,7 +92,7 @@ router.patch('/notes/:id', (req, res, next) => {
       // res.sendStatus(200) or res.redirect()
       res.send(updatedNote);
     })
-    .catch((error) => console.error(error));
+    .catch(error => console.error(error));
 });
 
 router.delete('/notes/:id', (req, res, next) => {
@@ -111,7 +112,8 @@ router.delete('/notes/:id', (req, res, next) => {
       }
       res.send(deletedNote);
       // res.redirect('../public/index.html');
-    }).catch((error) => console.error(error));
+    })
+    .catch(error => console.error(error));
 });
 
 module.exports = router;

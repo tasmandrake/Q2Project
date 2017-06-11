@@ -67,7 +67,6 @@ router.post('/users', (req, res, next) => {
     })
     .catch((error) => {
       if (error) {
-        console.log(req.body);
         return console.error(error);
       }
       res.status(400)
