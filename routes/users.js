@@ -8,14 +8,9 @@ const knex = require('../knex');
 const saltRounds = 10;
 const secret = process.env.SECRET;
 
-<<<<<<< HEAD
-
 router.get('/users', (req, res, next) => {
   // do we need gets for users?
 });
-=======
-router.get('/users', (req, res, next)=>{
->>>>>>> d244d6693cd7d920a65f1c9d8b5c3ec8a2d946e5
 
 router.get('/users/:id', (req, res, next) => {
   // do we need gets for users?

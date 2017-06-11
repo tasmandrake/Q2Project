@@ -1,10 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-<<<<<<< HEAD
-const jwt = require ('jsonwebtoken');
-const knex = require('../knex');
-=======
 const jwt = require('jsonwebtoken');
 const knex = require('../knex');
 
@@ -20,7 +16,6 @@ router.get('/notes', (req, res, next) => {
     .then((notes) => res.send(notes))
     .catch((error) => console.error(error));
 });
->>>>>>> d244d6693cd7d920a65f1c9d8b5c3ec8a2d946e5
 
 router.get('/notes/:id', (req, res, next) => {
   const id = req.params.id;
