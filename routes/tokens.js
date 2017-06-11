@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
@@ -67,3 +69,5 @@ router.post('/token', (req, res, next) => {
 router.delete('/token/:id', (req, res, next)=>{
   res.cookie('token', '').send();
 });
+
+module.exports = router;
