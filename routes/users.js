@@ -94,7 +94,6 @@ router.patch('/users', (req, res, next) => {
     .where('id', id)
     .update(body)
     .then((updateUser) => {
-      res.send(updateUser);
       // not sure what to put here
       res.send(updateUser);
     })
