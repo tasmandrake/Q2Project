@@ -10,7 +10,8 @@ router.use((req, res, next) => {
   if (req.user) {
     return next();
   }
-  res.sendStatus(401).redirect('../public/index.html');
+  res.sendStatus(401);
+  // res.redirect('../public/index.html');
 });
 
 router.get('/videos', (req, res, next) => {
@@ -33,7 +34,7 @@ router.get('/videos/:id', (req, res, next) => {
           .set({ 'Content-Type': 'plain/text' })
           .send('Not Found');
       }
-      res.send(videos[0]);
+      res.send(videos);
     });
 });
 
@@ -50,6 +51,7 @@ router.post('/videos', (req, res, next) => {
 
   knex('videos')
     .insert(body)
+    .returning('*')
     .then((newVideos) => {
       // res.send() or res.redirect
       res.send(newVideos);
@@ -66,7 +68,7 @@ router.patch('/videos/:id', (req, res, next)=>{
       .set({ 'Content-Type': 'plain/text' })
       .send('Nothing was changed');
   }
-  
+
   knex('videos')
     .update(body)
     .returning('*')
@@ -95,7 +97,7 @@ router.delete('/videos/:id', (req, res, next) => {
           .send('Not Found');
       }
       res.send(deletedVideo);
-      res.redirect('../public/userpage.html');
+      // res.redirect('../public/userpage.html');
     })
     .catch((error) => console.error(error));
 });

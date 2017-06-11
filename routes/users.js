@@ -139,7 +139,7 @@ router.delete('/users', (req, res, next) => {
       }
       // I think this is how redirect works but I haven't tried it yet, need basic framework to try it
       // res.redirect('../public/index.html');
-      res.clearCookie('token').send(deletedUser[0]);
+      res.clearCookie('token').send(deletedUser);
     })
     .catch((error) => {
       if (error) {

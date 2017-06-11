@@ -36,7 +36,7 @@ router.get('/notes/:id', (req, res, next) => {
           .set({ 'Content-Type': 'plain/text' })
           .send('Not Found');
       }
-      res.send(note[0]);
+      res.send(note);
     }).catch((error) => console.error(error));
 });
 
@@ -110,7 +110,7 @@ router.delete('/notes/:id', (req, res, next) => {
           .send('Not Found');
       }
       res.send(deletedNote);
-      res.redirect('../public/index.html');
+      // res.redirect('../public/index.html');
     }).catch((error) => console.error(error));
 });
 
