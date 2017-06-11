@@ -8,7 +8,7 @@ router.use((req, res, next) => {
   if (req.user) {
     return next();
   }
-  res.sendStatus(401).redirect('../public/index.html');
+  res.sendStatus(401);
 });
 
 router.get('/notes', (req, res, next) => {
@@ -50,6 +50,10 @@ router.get('/notes/:id', (req, res, next) => {
 
 router.post('/notes', (req, res, next) => {
   const body = req.body;
+  const userId = req.user.id;
+
+  //where are we going to pull the video id from so that it is automatic
+  const videoId = 3;
 
   if (!body.title) {
     return res.status(400)
@@ -59,20 +63,18 @@ router.post('/notes', (req, res, next) => {
     return res.status(400)
       .set({ 'Content-Type': 'plain/text' })
       .send('Note must not be empty');
-  } else if (!body.user_id) {
-    return res.status(400)
-      .set({ 'Content-Type': 'plain/text' })
-      .send('User ID must not be blank');
-  } else if (!body.video_id) {
-    return res.status(400)
-      .set({ 'Content-Type': 'plain/text' })
-      .send('Video ID must not be blank');
   }
 
   knex('notes')
-    .insert(body)
+    .insert({
+      title: body.title,
+      note_file: body.note_file,
+      user_id: userId,
+      video_id: videoId
+    })
     .then((newNote) => {
       // res.sendStatus(200) or res.redirect()
+      res.send(newNote);
     })
     .catch((error) => console.error(error));
 });
@@ -86,6 +88,7 @@ router.patch('/notes/:id', (req, res, next) => {
     .where('user_id', userId)
     .then((updatedNote) => {
       // res.sendStatus(200) or res.redirect()
+      res.send(updatedNote);
     })
     .catch((error) => console.error(error));
 });
@@ -104,6 +107,7 @@ router.delete('/notes/:id', (req, res, next) => {
           .set({ 'Content-Type': 'plain/text' })
           .send('Not Found');
       }
+      res.send(deletedNote);
       res.redirect('../public/index.html');
     }).catch((error) => console.error(error));
 });

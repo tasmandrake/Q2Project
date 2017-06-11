@@ -8,13 +8,6 @@ const knex = require('../knex');
 const saltRounds = 10;
 const secret = process.env.SECRET;
 
-router.use((req, res, next) => {
-  if (req.user) {
-    return next();
-  }
-  res.sendStatus(401).redirect('../public/index.html');
-});
-
 router.get('/users', (req, res, next) => {
   // do we need gets for users?
 });
@@ -51,7 +44,13 @@ router.post('/users', (req, res, next) => {
   body.password = bcrypt.hashSync(body.password, saltRounds);
 
   knex('users')
-    .insert(body)
+    .insert({
+      first_name: body.first_name,
+      last_name: body.last_name,
+      email: body.email,
+      username: body.username,
+      hashed_password: body.password
+    })
     .returning([
       'id',
       'first_name',
@@ -62,12 +61,13 @@ router.post('/users', (req, res, next) => {
     .then((newUser) => {
       const token = jwt.sign(newUser[0], secret);
 
-      res.cookie('token', token, { httpOnly: true });
+      res.cookie('token', token, { httpOnly: true }).send(newUser);
       // I think this is how redirect works but I haven't tried it yet, need basic framework to try it
       res.redirect('../public/userpage.html');
     })
     .catch((error) => {
       if (error) {
+        console.log(req.body);
         return console.error(error);
       }
       res.status(400)
@@ -76,15 +76,27 @@ router.post('/users', (req, res, next) => {
     });
 });
 
-router.patch('/users/:id', (req, res, next) => {
-  const id = req.params.id;
-  const body = req.body;
+router.use((req, res, next) => {
+  if (req.user) {
+    return next();
+  }
+  res.sendStatus(401);
+});
 
+router.patch('/users', (req, res, next) => {
+  const id = req.user.id;
+  const body = req.body;
+  if (body.password) {
+    body.hashed_password = bcrypt.hashSync(body.password, saltRounds);
+    // May have problems when trying to update whole body
+  }
   knex('users')
     .where('id', id)
     .update(body)
-    .then(() => {
+    .then((updateUser) => {
+      res.send(updateUser);
       // not sure what to put here
+      res.send(updateUser);
     })
     .catch((error) => {
       if (error) {
@@ -96,8 +108,9 @@ router.patch('/users/:id', (req, res, next) => {
     });
 });
 
-router.delete('/users/:id', (req, res, next) => {
-  const id = req.params.id;
+router.delete('/users', (req, res, next) => {
+  const id = req.user.id;
+  console.log(id);
   knex('users')
     .del()
     .where('id', id)
@@ -108,6 +121,7 @@ router.delete('/users/:id', (req, res, next) => {
           .send('User not found');
       }
       // I think this is how redirect works but I haven't tried it yet, need basic framework to try it
+      res.send(deletedUser);
       res.redirect('../public/index.html');
     })
     .catch((error) => {

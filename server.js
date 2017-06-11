@@ -21,15 +21,13 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static('public'));
 
-app.use(tokens);
 
 app.use((req,res,next) => {
   const token = req.cookies.token;
-
   if (token) {
     jwt.verify(token, process.env.SECRET, (error, decoded) => {
       if (error) {
-        res.clearCookie('token').send();
+        res.clearCookie('token');
         return next(error);
       }
       req.user = decoded;
@@ -40,8 +38,9 @@ app.use((req,res,next) => {
   }
 });
 
-app.use(notes);
 app.use(users);
+app.use(tokens);
+app.use(notes);
 app.use(videos);
 
 app.use((req, res) => {
