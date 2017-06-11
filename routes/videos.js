@@ -28,7 +28,7 @@ router.get('/videos/:id', (req, res, next) => {
     });
 });
 
-router.post('/videos', (req, res, next)=>{
+router.post('/videos', (req, res, next) => {
   const body = req.body;
 
   if (!req.body.video_url) {
@@ -56,7 +56,7 @@ router.patch('/videos/:id', (req, res, next)=>{
     .catch((error) => console.error(error));
 });
 
-router.delete('/videos/:id', (req, res, next)=>{
+router.delete('/videos/:id', (req, res, next) => {
   const id = req.params.id;
 
   knex('notes')
