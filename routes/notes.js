@@ -97,3 +97,5 @@ router.delete('/notes/:id', (req, res, next) => {
       res.redirect('../public/index.html');
     }).catch((error) => console.error(error));
 });
+
+module.exports = router;
