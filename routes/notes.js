@@ -4,6 +4,13 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const knex = require('../knex');
 
+router.use((req, res, next) => {
+  if (req.user) {
+    return next();
+  }
+  res.sendStatus(401).redirect('../public/index.html');
+});
+
 router.get('/notes', (req, res, next) => {
   knex('notes')
     .select(

@@ -8,6 +8,13 @@ const knex = require('../knex');
 const saltRounds = 10;
 const secret = process.env.SECRET;
 
+router.use((req, res, next) => {
+  if (req.user) {
+    return next();
+  }
+  res.sendStatus(401).redirect('../public/index.html');
+});
+
 router.get('/users', (req, res, next) => {
   // do we need gets for users?
 });

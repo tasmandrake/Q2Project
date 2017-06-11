@@ -7,16 +7,12 @@ const jwt = require ('jsonwebtoken');
 const knex = require('../knex');
 const secret = process.env.SECRET;
 
-router.get('/token', (req, res, next)=>{
-  const token = req.cookies.token;
-  // true or false can be checked when switching pages, if true stay on the page if false send user to login
-  
-  jwt.verify(token, secret, (err) => {
-    if (err) {
-      return res.set({ 'Content-Type': 'application/json' }).send('false');
-    }
-    res.set({ 'Content-Type': 'application/json' }).send('true');
-  });
+router.get('/token', (req, res, next) => {
+  if (req.user) {
+    res.send(true);
+  } else {
+    res.send(false);
+  }
 });
 
 router.post('/token', (req, res, next) => {
@@ -67,8 +63,8 @@ router.post('/token', (req, res, next) => {
     });
 });
 
-router.delete('/token/:id', (req, res, next)=>{
-  res.cookie('token', '').send();
+router.delete('/token', (req, res, next)=>{
+  res.clearCookie('token').send();
 });
 
 module.exports = router;

@@ -22,6 +22,24 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 app.use(tokens);
+
+app.use((req,res,next) => {
+  const token = req.cookies.token;
+
+  if (token) {
+    jwt.verify(token, process.env.SECRET, (error, decoded) => {
+      if (error) {
+        res.clearCookie('token').send();
+        return next(error);
+      }
+      req.user = decoded;
+      next();
+    });
+  } else {
+    next();
+  }
+});
+
 app.use(notes);
 app.use(users);
 app.use(videos);
@@ -31,7 +49,7 @@ app.use((req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+  console.error(err);
   res.sendStatus(500);
 });
 

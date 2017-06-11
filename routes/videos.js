@@ -1,8 +1,17 @@
+'use strict';
+
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const knex = require('../knex');
+
+router.use((req, res, next) => {
+  if (req.user) {
+    return next();
+  }
+  res.sendStatus(401).redirect('../public/index.html');
+});
 
 router.get('/videos', (req, res, next) => {
   knex('videos')
@@ -24,7 +33,7 @@ router.get('/videos/:id', (req, res, next) => {
           .set({ 'Content-Type': 'plain/text' })
           .send('Not Found');
       }
-      res.send(book[0]);
+      res.send(videos[0]);
     });
 });
 
