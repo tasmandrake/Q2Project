@@ -63,7 +63,7 @@ router.post('/users', (req, res, next) => {
 
       res.cookie('token', token, { httpOnly: true }).send(newUser);
       // I think this is how redirect works but I haven't tried it yet, need basic framework to try it
-      res.redirect('../public/userpage.html');
+      // res.redirect('../public/userpage.html');
     })
     .catch((error) => {
       if (error) {
@@ -86,13 +86,25 @@ router.use((req, res, next) => {
 router.patch('/users', (req, res, next) => {
   const id = req.user.id;
   const body = req.body;
+  if (!Object.keys(req.body).length) {
+    return res.status(400)
+              .set({ 'Content-Type': 'plain/text' })
+              .send('Nothing was changed');
+  }
   if (body.password) {
     body.hashed_password = bcrypt.hashSync(body.password, saltRounds);
-    // May have problems when trying to update whole body
+    delete body.password;
   }
   knex('users')
     .where('id', id)
     .update(body)
+    .returning([
+      'id',
+      'first_name',
+      'last_name',
+      'email',
+      'username'
+    ])
     .then((updateUser) => {
       // not sure what to put here
       res.send(updateUser);
@@ -109,7 +121,6 @@ router.patch('/users', (req, res, next) => {
 
 router.delete('/users', (req, res, next) => {
   const id = req.user.id;
-  console.log(id);
   knex('users')
     .del()
     .where('id', id)
@@ -120,11 +131,16 @@ router.delete('/users', (req, res, next) => {
           .send('User not found');
       }
       // I think this is how redirect works but I haven't tried it yet, need basic framework to try it
-      res.send(deletedUser);
-      res.redirect('../public/index.html');
+      // res.redirect('../public/index.html');
+      res.clearCookie('token').send(deletedUser[0]);
     })
     .catch((error) => {
-      return res.send(error);
+      if (error) {
+        return console.error(error);
+      }
+      return res.status(404)
+        .set({ 'Content-Type': 'plain/text' })
+        .send('Not Found');
     });
 });
 
