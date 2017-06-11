@@ -1,8 +1,17 @@
+'use strict';
+
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const knex = require('../knex');
+
+router.use((req, res, next) => {
+  if (req.user) {
+    return next();
+  }
+  res.sendStatus(401).redirect('../public/index.html');
+});
 
 router.get('/videos', (req, res, next) => {
   knex('videos')
@@ -24,23 +33,26 @@ router.get('/videos/:id', (req, res, next) => {
           .set({ 'Content-Type': 'plain/text' })
           .send('Not Found');
       }
-      res.send(book[0]);
+      res.send(videos[0]);
     });
 });
 
+// can post duplicate videos, how do you knwo which to delete
+// delete videos only when deleting notes that are tied to them?
 router.post('/videos', (req, res, next) => {
   const body = req.body;
 
   if (!req.body.video_url) {
     return res.status(400)
       .set({ 'Content-Type': 'plain/text' })
-      .send('Video url must not be blank');
+      .send('Video URL must not be blank');
   }
 
   knex('videos')
     .insert(body)
     .then((newVideos) => {
       // res.send() or res.redirect
+      res.send(newVideos);
     })
     .catch((error) => console.error(error));
 });
@@ -52,10 +64,14 @@ router.patch('/videos/:id', (req, res, next)=>{
     .update(body)
     .then((updateVideo) => {
       // res.send() or res.redirect
+      res.send(updateVideo);
     })
     .catch((error) => console.error(error));
 });
 
+
+// need to change how delet works so that it doesn't delete videos that other people are using
+// unlink video from the user?
 router.delete('/videos/:id', (req, res, next) => {
   const id = req.params.id;
 
@@ -68,6 +84,7 @@ router.delete('/videos/:id', (req, res, next) => {
           .set({ 'Content-Type': 'plain/text' })
           .send('Not Found');
       }
+      res.send(deletedVideo);
       res.redirect('../public/userpage.html');
     })
     .catch((error) => console.error(error));
