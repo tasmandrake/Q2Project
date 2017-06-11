@@ -72,3 +72,5 @@ router.delete('/videos/:id', (req, res, next)=>{
     })
     .catch((error) => console.error(error));
 });
+
+module.exports = router;
