@@ -13,7 +13,8 @@ router.get('/notes', (req, res, next) => {
       'user_id',
       'video_id'
     )
-    .then((notes) => res.send(notes));
+    .then((notes) => res.send(notes))
+    .catch((error) => console.error(error));
 });
 
 router.get('/notes/:id', (req, res, next) => {
@@ -22,7 +23,7 @@ router.get('/notes/:id', (req, res, next) => {
   knex('notes')
 
   // do we want to join with videos to get all info needed? for note taking page?
-  
+
   .select(
     'id',
     'title',
@@ -94,5 +95,5 @@ router.delete('/notes/:id', (req, res, next) => {
           .send('Not Found');
       }
       res.redirect('../public/index.html');
-    });
+    }).catch((error) => console.error(error));
 });
