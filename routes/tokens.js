@@ -9,7 +9,8 @@ const secret = process.env.SECRET;
 
 router.get('/token', (req, res, next)=>{
   const token = req.cookies.token;
-
+  // true or false can be checked when switching pages, if true stay on the page if false send user to login
+  
   jwt.verify(token, secret, (err) => {
     if (err) {
       return res.set({ 'Content-Type': 'application/json' }).send('false');
