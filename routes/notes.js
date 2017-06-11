@@ -20,6 +20,9 @@ router.get('/notes/:id', (req, res, next) => {
   const id = req.params.id;
 
   knex('notes')
+
+  // do we want to join with videos to get all info needed? for note taking page?
+  
   .select(
     'id',
     'title',
