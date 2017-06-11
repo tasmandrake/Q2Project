@@ -21,24 +21,24 @@ router.post('/users', (req, res, next) => {
 
   if (!body.first_name) {
     return res.status(400)
-              .set({ 'Content-Type': 'plain/text' })
-              .send('First name must not be blank');
+      .set({ 'Content-Type': 'plain/text' })
+      .send('First name must not be blank');
   } else if (!body.last_name) {
     return res.status(400)
-              .set({ 'Content-Type': 'plain/text' })
-              .send('Last Name must not be blank');
+      .set({ 'Content-Type': 'plain/text' })
+      .send('Last Name must not be blank');
   } else if (!body.email) {
     return res.status(400)
-              .set({ 'Content-Type': 'plain/text' })
-              .send('Email must not be blank');
+      .set({ 'Content-Type': 'plain/text' })
+      .send('Email must not be blank');
   } else if (!body.username) {
     return res.status(400)
-              .set({ 'Content-Type': 'plain/text' })
-              .send('Username must not be blank');
+      .set({ 'Content-Type': 'plain/text' })
+      .send('Username must not be blank');
   } else if (!body.password) {
     return res.status(400)
-              .set({ 'Content-Type': 'plain/text' })
-              .send('Password must not be blank');
+      .set({ 'Content-Type': 'plain/text' })
+      .send('Password must not be blank');
   }
 
   body.password = bcrypt.hashSync(body.password, saltRounds);
@@ -71,8 +71,8 @@ router.post('/users', (req, res, next) => {
         return console.error(error);
       }
       res.status(400)
-          .set({ 'Content-Type': 'plain/text' })
-          .send('Email already exists');
+        .set({ 'Content-Type': 'plain/text' })
+        .send('Email already exists');
     });
 });
 
@@ -86,10 +86,10 @@ router.use((req, res, next) => {
 router.patch('/users', (req, res, next) => {
   const id = req.user.id;
   const body = req.body;
-  if (!Object.keys(req.body).length) {
+  if (!Object.keys(body).length) {
     return res.status(400)
-              .set({ 'Content-Type': 'plain/text' })
-              .send('Nothing was changed');
+      .set({ 'Content-Type': 'plain/text' })
+      .send('Nothing was changed');
   }
   if (body.password) {
     body.hashed_password = bcrypt.hashSync(body.password, saltRounds);
@@ -124,6 +124,13 @@ router.delete('/users', (req, res, next) => {
   knex('users')
     .del()
     .where('id', id)
+    .returning([
+      'id',
+      'first_name',
+      'last_name',
+      'email',
+      'username'
+    ])
     .then((deletedUser) => {
       if (!deletedUser) {
         return res.status(404)

@@ -59,9 +59,18 @@ router.post('/videos', (req, res, next) => {
 
 router.patch('/videos/:id', (req, res, next)=>{
   const body = req.body;
+  const id = req.params.id;
 
+  if (!Object.keys(body).length) {
+    return res.status(400)
+      .set({ 'Content-Type': 'plain/text' })
+      .send('Nothing was changed');
+  }
+  
   knex('videos')
     .update(body)
+    .returning('*')
+    .where('id', id)
     .then((updateVideo) => {
       // res.send() or res.redirect
       res.send(updateVideo);
@@ -78,6 +87,7 @@ router.delete('/videos/:id', (req, res, next) => {
   knex('notes')
     .del()
     .where('id', id)
+    .returning('*')
     .then((deletedVideo) => {
       if (!deletedVideo) {
         return res.status(404)
