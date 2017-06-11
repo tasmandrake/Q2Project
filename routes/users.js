@@ -14,7 +14,7 @@ router.get('/users', (req, res, next) => {
 });
 
 router.get('/users/:id', (req, res, next) => {
-
+  // do we need gets for users?
 });
 
 router.post('/users', (req, res, next) => {
@@ -57,6 +57,7 @@ router.post('/users', (req, res, next) => {
       const token = jwt.sign(newUser[0], secret);
 
       res.cookie('token', token, { httpOnly: true });
+      // I think this is how redirect works but I haven't tried it yet, need basic framework to try it
       res.redirect('../public/userpage.html');
     })
     .catch((error) => {
@@ -100,6 +101,7 @@ router.delete('/users/:id', (req, res, next) => {
           .set({ 'Content-Type': 'plain/text' })
           .send('User not found');
       }
+      // I think this is how redirect works but I haven't tried it yet, need basic framework to try it
       res.redirect('../public/index.html');
     })
     .catch((error) => {
