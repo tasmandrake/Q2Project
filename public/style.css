@@ -6,3 +6,14 @@
   /*background-position: center;*/
   /*background-color: red;*/
 }
+#prolinks {
+  /*margin-left: 50px;
+  margin-right: 50px;*/
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.aboutpic {
+  height: 200px;
+  width: 200px;
+}
