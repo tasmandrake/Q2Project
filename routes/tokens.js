@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt');
 const jwt = require ('jsonwebtoken');
 const knex = require('../knex');
 const secret = process.env.SECRET;
-
 router.get('/token', (req, res, next) => {
   if (req.user) {
     res.send(true);
@@ -22,7 +21,6 @@ router.post('/token', (req, res, next) => {
 
   const email = req.body.email;
   const password = req.body.password;
-
   if (!email) {
     return res.status(400)
       .set({ 'Content-Type': 'plain/text' })

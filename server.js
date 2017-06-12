@@ -21,6 +21,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static('public'));
 
+app.use(tokens);
 
 app.use((req,res,next) => {
   const token = req.cookies.token;
@@ -39,7 +40,6 @@ app.use((req,res,next) => {
 });
 
 app.use(users);
-app.use(tokens);
 app.use(notes);
 app.use(videos);
 
