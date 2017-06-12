@@ -7,7 +7,10 @@
     event.preventDefault();
     const email = $('#username').val();
     const password = $('#password').val();
-
+    const data = {
+      email: email,
+      password: password
+    };
     // if(!username){
     //   //return toast
     // }
@@ -17,7 +20,7 @@
 
     const options = {
       contentType: 'application/json',
-      data: JSON.stringify({ email: email, password: password }),
+      data: JSON.stringify(data),
       dataType: 'json',
       type: 'POST',
       url: '/token'
@@ -25,10 +28,9 @@
 
     $.ajax(options)
       .done((data) => {
-        window.location.href = '/login.html';
+        window.location.href = '/userhub.html';
       })
       .fail(($xhr) => {
-        console.log('fail');
         // Materialize.toast($xhr.responseText, 3000);
     });
   });
@@ -46,7 +48,7 @@
       email: email,
       username: username,
       password: password
-    }
+    };
     // if(!username){
     //   //return toast
     // }
@@ -64,10 +66,9 @@
 
     $.ajax(options)
       .done((data) => {
-        window.location.href = '/login.html';
+        window.location.href = '/userhub.html';
       })
       .fail(($xhr) => {
-        console.log('fail');
         // Materialize.toast($xhr.responseText, 3000);
     });
   });

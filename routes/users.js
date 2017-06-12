@@ -62,8 +62,6 @@ router.post('/users', (req, res, next) => {
       const token = jwt.sign(newUser[0], secret);
 
       res.cookie('token', token, { httpOnly: true }).send(newUser);
-      // I think this is how redirect works but I haven't tried it yet, need basic framework to try it
-      // res.redirect('../public/userpage.html');
     })
     .catch((error) => {
       if (error) {
@@ -105,7 +103,7 @@ router.patch('/users', (req, res, next) => {
       'username'
     ])
     .then((updateUser) => {
-      // not sure what to put here
+      // refresh
       res.send(updateUser);
     })
     .catch((error) => {
