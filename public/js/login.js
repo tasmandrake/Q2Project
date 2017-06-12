@@ -9,13 +9,6 @@
       email: email,
       password: password
     };
-    // if(!username){
-    //   //return toast
-    // }
-    // if(!password){
-    //   //return toast
-    // }
-
     const options = {
       contentType: 'application/json',
       data: JSON.stringify(data),
@@ -29,7 +22,7 @@
         window.location.href = '/userhub.html';
       })
       .fail(($xhr) => {
-        // Materialize.toast($xhr.responseText, 3000);
+
     });
   });
 
@@ -47,13 +40,6 @@
       username: username,
       password: password
     };
-    // if(!username){
-    //   //return toast
-    // }
-    // if(!password){
-    //   //return toast
-    // }
-
     const options = {
       contentType: 'application/json',
       data: JSON.stringify(data),
@@ -61,12 +47,14 @@
       type: 'POST',
       url: '/users'
     }
+
     $.ajax(options)
       .done((jsonData) => {
         window.location.href = '/userhub.html';
       })
       .fail(($xhr) => {
-        // Materialize.toast($xhr.responseText, 3000);
-    });
+      })
+      .error(err => console.log(err));
+
   });
 })();
