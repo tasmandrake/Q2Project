@@ -1,0 +1,10 @@
+#splash {
+  display: flex;
+  height: 80vh;
+  align-items: center;
+  justify-content: center;
+}
+
+#login {
+  width: 300px;
+}
