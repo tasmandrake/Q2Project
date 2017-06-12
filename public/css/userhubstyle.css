@@ -1,0 +1,14 @@
+#myvids, #sharedvids, #results{
+  border: 1px solid black;
+  /*margin: 10px;*/
+}
+
+#results{
+}
+
+a{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: none;
+}
