@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const jwt = require ('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const knex = require('../knex');
 const secret = process.env.SECRET;
 router.get('/token', (req, res, next) => {
@@ -25,8 +25,7 @@ router.post('/token', (req, res, next) => {
     return res.status(400)
       .set({ 'Content-Type': 'plain/text' })
       .send('Email must not be blank');
-  }
-  else if (!password) {
+  } else if (!password) {
     return res.status(400)
       .set({ 'Content-Type': 'plain/text' })
       .send('Password must not be blank');
@@ -61,7 +60,7 @@ router.post('/token', (req, res, next) => {
     });
 });
 
-router.delete('/token', (req, res, next)=>{
+router.delete('/token', (req, res, next) => {
   res.clearCookie('token').send();
 });
 
