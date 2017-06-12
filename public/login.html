@@ -24,17 +24,32 @@
 
     <!--team javascript-->
 
-    <script id="teamscript" type="text/javascript" src="./app.js"></script>
+
   </head>
 
   <body>
     <div id="player">
     <!--video goes here-->
     </div>
+    <form>
+  <div class="form-group">
+    <label for="search">Search</label>
+    <input type="text" class="form-control" id="search" placeholder="search">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
     <script>
+      let query = {};
+
+      window.location.href.split('?')[1]
+      .split('&')
+      .map(e => {
+        let kv = e.split('=');
+        query[kv[0]] = kv[1];
+      });
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
-      console.log(document.getElementsByTagName('script')[2]);
+      //console.log(document.getElementsByTagName('script')[2]);
       tag.src = "https://www.youtube.com/iframe_api";
       var firstScriptTag = document.getElementsByTagName('script')[2];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
@@ -46,7 +61,7 @@
         player = new YT.Player('player', {
           height: '390',
           width: '640',
-          videoId: 'M7lc1UVf-VE',
+          videoId: query.id,
           events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
@@ -77,6 +92,11 @@
       }
     </script>
 
+    <script type="text/javascript" src = 'https://apis.google.com/js/client.js?onload=init'>
+
+    </script>
+
+      <script id="teamscript" type="text/javascript" src="./app.js"></script>
   </body>
 
 </html>
