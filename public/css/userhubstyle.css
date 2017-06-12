@@ -12,3 +12,7 @@ a{
 a:hover{
   text-decoration: none;
 }
+.urlContainer{
+  display: none;
+  
+}

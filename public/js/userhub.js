@@ -1,24 +1,24 @@
 $( document ).ready(function() {
 
   function makeCard(title, img, id){
-    let $col = $("<div class='col-xs-6'></div>");
+    let $col = $("<div class=' col-xs-6'></div>");
     let $panel = $("<div class='panel panel-default'></div>");
     let $panelHead = $("<div class='panel-heading'>");
     let $panelBody = $("<div class='panel-body'>");
     let $panelRow = $('#panelRow');
     let $panelImg = $("<img class = 'img-responsive center-block'>");
-    let $anchor = $<a href="login.html">
+    let $hidden = $("<div class='urlContainer'></div");
 
-
+    $hidden.text(id);
     $panel.append($panelHead);
+    $panel.data('id',id);
     $panelHead.text(title);
     $panelBody.append($panelImg);
+    $panelBody.append($hidden);
     $panel.append($panelBody);
     $panelImg.attr("src", img);
     $col.append($panel);
     $panelRow.append($col);
-
-
   }
 
   $('form').submit(function(event){
@@ -54,5 +54,30 @@ $( document ).ready(function() {
         console.log(err);
     });//fail
   }
+
 });//end submit
+
+$('#panelRow').click(function(e){
+  var id = $(e.target).closest('.panel').data('id');
+
+  const options = {
+    contentType: 'application/json',
+    data: JSON.stringify({video_url: id}),
+    dataType: 'json',
+    type: 'POST',
+    url: '/videos'
+  }
+  $.ajax(options)
+    .done((data) => {
+      window.location.href = '/login?id='+id;
+    })
+    .fail(($xhr) => {
+      console.log('fail');
+  });
+
+
+
+})//end panelRow Click
+
+
 });
