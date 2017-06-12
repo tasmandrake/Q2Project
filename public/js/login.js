@@ -27,7 +27,7 @@
     };
 
     $.ajax(options)
-      .done((data) => {
+      .done((jsonData) => {
         window.location.href = '/userhub.html';
       })
       .fail(($xhr) => {
@@ -64,7 +64,7 @@
       url: '/users'
     }
     $.ajax(options)
-      .done((data) => {
+      .done((jsonData) => {
         window.location.href = '/userhub.html';
       })
       .fail(($xhr) => {

@@ -63,9 +63,6 @@ router.post('/users', (req, res, next) => {
       res.cookie('token', token, { httpOnly: true }).send(newUser);
     })
     .catch((error) => {
-      if (error) {
-        return console.error(error);
-      }
       res.status(400)
         .set({ 'Content-Type': 'plain/text' })
         .send('Email already exists');
