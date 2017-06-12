@@ -59,21 +59,24 @@ $( document ).ready(function() {
 
 $('#panelRow').click(function(e){
   var id = $(e.target).closest('.panel').data('id');
+  console.log(id);
 
-  const options = {
-    contentType: 'application/json',
-    data: JSON.stringify({video_url: id}),
-    dataType: 'json',
-    type: 'POST',
-    url: '/videos'
-  }
-  $.ajax(options)
-    .done((data) => {
-      window.location.href = '/login?id='+id;
-    })
-    .fail(($xhr) => {
-      console.log('fail');
-  });
+  window.location.href = 'login.html?id=' + id;
+
+  // const options = {
+  //   contentType: 'application/json',
+  //   data: JSON.stringify({video_url: id}),
+  //   dataType: 'json',
+  //   type: 'POST',
+  //   url: '/videos'
+  // }
+  // $.ajax(options)
+  //   .done((data) => {
+  //     window.location.href = '/login?id='+id;
+  //   })
+  //   .fail(($xhr) => {
+  //     console.log('fail');
+  // });
 
 
 
