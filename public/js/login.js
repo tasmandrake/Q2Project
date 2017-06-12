@@ -53,8 +53,7 @@
         window.location.href = '/userhub.html';
       })
       .fail(($xhr) => {
+        console.log($xhr.responseText);
       })
-      .error(err => console.log(err));
-
   });
 })();
