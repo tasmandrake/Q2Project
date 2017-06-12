@@ -8,7 +8,6 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const port = process.env.PORT || 8000;
 
@@ -22,7 +21,7 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 
-app.use((req,res,next) => {
+app.use((req, res, next) => {
   const token = req.cookies.token;
   if (token) {
     jwt.verify(token, process.env.SECRET, (error, decoded) => {
@@ -55,7 +54,5 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log('Listening on port ' + port);
 });
-
-
 
 module.exports = app;

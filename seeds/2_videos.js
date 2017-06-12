@@ -1,11 +1,11 @@
 'use strict';
 
-exports.seed = function(knex, Promise) {
+exports.seed = (knex, Promise) => {
   return knex('videos').del()
     .then(() => {
       return knex('videos').insert([
-        {id: 1, video_url: 'Ct96Y751-_E'},
-        {id: 2, video_url: 'https://www.youtube.com/watch?v=48KJ5HUY6NE'}
+        { id: 1, video_url: 'Ct96Y751-_E' },
+        { id: 2, video_url: 'https://www.youtube.com/watch?v=48KJ5HUY6NE' }
       ]);
     })
     .then(() => {
