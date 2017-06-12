@@ -35,6 +35,13 @@
           <!--video goes here-->
           </div>
           <script>
+          let query = {};
+          window.location.href.split('?')[1]
+          .split('&')
+          .map(e => {
+            let kv = e.split('=');
+            query[kv[0]] = kv[1];
+          });
             // 2. This code loads the IFrame Player API code asynchronously.
             var tag = document.createElement('script');
             console.log(document.getElementsByTagName('script')[2]);
@@ -49,7 +56,7 @@
               player = new YT.Player('player', {
                 height: '390',
                 width: '640',
-                videoId: 'M7lc1UVf-VE',
+                videoId: query.id,
                 events: {
                   'onReady': onPlayerReady,
                   'onStateChange': onPlayerStateChange
