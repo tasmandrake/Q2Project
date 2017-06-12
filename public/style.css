@@ -1,0 +1,8 @@
+#binding {
+  background-image: url(https://i.stack.imgur.com/58Fp8.png);
+  /*background-image: repeating-linear-gradient();*/
+  /*background-repeat: repeat-x;*/
+  background-size: contain;
+  /*background-position: center;*/
+  /*background-color: red;*/
+}
