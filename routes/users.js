@@ -18,7 +18,6 @@ router.get('/users/:id', (req, res, next) => {
 
 router.post('/users', (req, res, next) => {
   const body = req.body;
-
   if (!body.first_name) {
     return res.status(400)
       .set({ 'Content-Type': 'plain/text' })

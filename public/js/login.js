@@ -63,7 +63,6 @@
       type: 'POST',
       url: '/users'
     }
-
     $.ajax(options)
       .done((data) => {
         window.location.href = '/userhub.html';

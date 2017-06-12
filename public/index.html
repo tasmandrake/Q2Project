@@ -18,39 +18,40 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
   <!--team style sheet-->
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body id="splashbody">
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Jump Note</a>
-      </div>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">About</a></li>
-      </ul>
-    </div>
-  </nav>
   <div class="container-fluid" id="splash">
-    <div class="row" id="info">
+    <div class="row text-center" id="info">
       <div class="col-xs-12">
         <h1>Jump Note</h1>
-        <h6>The app that allows you to take notes on live video</h6>
+        <p>The app that allows you to take notes on live video.  Learn more about <a href="about.html">Jump Note</a></p>
       </div>
+      <br>
+      <br>
+      <br>
 
       <div class="modalButtons">
+        <br>
+        <br>
+        <br>
+        <br>
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login">
           Login
         </button>
+        <br>
+        <br>
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newUser">
           New Account
         </button>
+        <br>
+        <br>
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#oauth">
           Login with Google
         </button>
       </div>
-      <div class="referencedModals">
+      <div class="referencedModals text-left">
         <div class="modal fade" id="login" tabindex="-1">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -60,14 +61,20 @@
               </div>
               <div class="modal-body">
                 <form>
+                  <br>
+                  <br>
                   <div class="form-group">
                     <label for="email">Username</label>
-                    <input id="username" type="email" class="form-control" placeholder="username">
+                    <input id="username" type="email" class="form-control" placeholder="Email">
                   </div>
+                  <br>
                   <div class="form-group">
                     <label for="password">Password</label>
                     <input id="password" type="password" class="form-control" placeholder="Password">
                   </div>
+                  <br>
+                  <br>
+                  <br>
                   <div class="modal-footer">
                     <button id="userLogin" type="submit" class="btn btn-default">Login</button>
                   </div>
@@ -87,23 +94,23 @@
                 <form>
                   <div class="form-group">
                     <label for="firstName">First Name</label>
-                    <input id="first_name" type="text" class="form-control" placeholder="first name">
+                    <input id="first_name" type="text" class="form-control" placeholder="First Name">
                   </div>
                   <div class="form-group">
                     <label for="lastName">Last Name</label>
-                    <input id="last_name" type="text" class="form-control" placeholder="last name">
+                    <input id="last_name" type="text" class="form-control" placeholder="Last Name">
                   </div>
                   <div class="form-group">
                     <label for="newEmail">Email</label>
-                    <input id="newEmail" type="email" class="form-control" placeholder="email">
+                    <input id="newEmail" type="email" class="form-control" placeholder="Email">
                   </div>
                   <div class="form-group">
                     <label for="newUser">Username</label>
-                    <input id="newUsername" type="text" class="form-control" placeholder="username">
+                    <input id="newUsername" type="text" class="form-control" placeholder="Username">
                   </div>
                   <div class="form-group">
                     <label for="newPassword">Password</label>
-                    <input id="newPassword" type="password" class="form-control" placeholder="password">
+                    <input id="newPassword" type="password" class="form-control" placeholder="Password">
                   </div>
                   <div class="modal-footer">
                     <button id="newAccount" type="submit" class="touch btn btn-default">Create Account</button>
