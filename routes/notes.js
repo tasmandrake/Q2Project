@@ -44,9 +44,7 @@ router.get('/notes/:id', (req, res, next) => {
 router.post('/notes', (req, res, next) => {
   const body = req.body;
   const userId = req.user.id;
-
-  // where are we going to pull the video id from so that it is automatic
-  const videoId = 3;
+  const videoId = req.user.video_id;
 
   if (!body.title) {
     return res.status(400)

@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const knex = require('../knex');
 const secret = process.env.SECRET;
+
 router.get('/token', (req, res, next) => {
   if (req.user) {
     res.send(true);
