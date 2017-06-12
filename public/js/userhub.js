@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+  
   function makeCard(title, img, id){
     //create panel elements
     let $col = $("<div class=' col-xs-6'></div>");
@@ -22,20 +23,18 @@ $( document ).ready(function() {
   }
 
   $('form').submit(function(event){
-    var $target = $(event.target);
     event.preventDefault();
     var text = $('#search').val().replace(' ', "+");
     if(text.length > 0){
       var $xhr = $.getJSON('https://www.googleapis.com/youtube/v3/search/?part=snippet&q='+text+'&maxResults=10&key=AIzaSyC0b4jxH6E1DbtJm3S_ZOZx5ahcOmthPDk');
       $xhr.done(function(data){
-        var vids = data.items
-        console.log(vids);
+        let vids = data.items
         if ($xhr.status !== 200){
             return;
         }
         else {
           var resultbox = $('#results');
-          for (var i = 0; i < vids.length; i++) {
+          for (let i = 0; i < vids.length; i++) {
             var title = vids[i].snippet.title;
             var img = vids[i].snippet.thumbnails.medium.url;
             var id = vids[i].id.videoId;
@@ -49,10 +48,9 @@ $( document ).ready(function() {
       });//fail
     }
   });//end submit
+
   $('#panelRow').click(function(e){
     var id = $(e.target).closest('.panel').data('id');
-    console.log(id);
-
-    window.location.href = 'login.html?id=' + id;
-  })//end panelRow Click
+    window.location.href = 'notes.html?id=' + id;
+  });//end panelRow Click
 });
