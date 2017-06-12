@@ -1,3 +1,10 @@
+#splashbody {
+  background-image: url('../images/notesplash.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 #splash {
   display: flex;
   height: 80vh;
@@ -5,6 +12,16 @@
   justify-content: center;
 }
 
-#login {
-  width: 300px;
+#info {
+  width: 600px;
+  background-color: rgba(255, 255, 255, 0.93);
+  padding: 30px;
+  border-radius: 10px;
+}
+.modal-dialog {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 600px;
 }
