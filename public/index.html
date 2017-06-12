@@ -1,50 +1,142 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Jump Note</title>
 
-    <!-- jQuery CDN -->
-    <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
+<head>
+  <meta charset="utf-8">
+  <title>Jump Note</title>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <!--team style sheet-->
-    <link rel="stylesheet" href="./style.css">
-  </head>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-  <body>
-    <div class="container-fluid">
-      <div class="row">
+  <!--team style sheet-->
+  <link rel="stylesheet" href="./css/index.css">
+</head>
 
+<body id="splashbody">
+  <div class="container-fluid" id="splash">
+    <div class="row text-center" id="info">
+      <div class="col-xs-12">
+        <h1>Jump Note</h1>
+        <p>The app that allows you to take notes on live video.  Learn more about <a href="about.html">Jump Note</a></p>
       </div>
-      <div class="row">
-        <div class="col-xs-6 col-xs-offset-3">
-          <form>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Username</label>
-              <input id='username' type="email" class="form-control" id="exampleInputEmail1" placeholder="username">
+      <br>
+      <br>
+      <br>
+
+      <div class="modalButtons">
+        <br>
+        <br>
+        <br>
+        <br>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login">
+          Login
+        </button>
+        <br>
+        <br>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newUser">
+          New Account
+        </button>
+        <br>
+        <br>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#oauth">
+          Login with Google
+        </button>
+      </div>
+      <div class="referencedModals text-left">
+        <div class="modal fade" id="login" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Login to Jump Note</h4>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <br>
+                  <br>
+                  <div class="form-group">
+                    <label for="email">Username</label>
+                    <input id="username" type="email" class="form-control" placeholder="Email">
+                  </div>
+                  <br>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" class="form-control" placeholder="Password">
+                  </div>
+                  <br>
+                  <br>
+                  <br>
+                  <div class="modal-footer">
+                    <button id="userLogin" type="submit" class="btn btn-default">Login</button>
+                  </div>
+                </form>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input id='password' type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+        </div>
+        <div class="modal fade" id="newUser" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Create a new Jump Note account</h4>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input id="first_name" type="text" class="form-control" placeholder="First Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input id="last_name" type="text" class="form-control" placeholder="Last Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="newEmail">Email</label>
+                    <input id="newEmail" type="email" class="form-control" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                    <label for="newUser">Username</label>
+                    <input id="newUsername" type="text" class="form-control" placeholder="Username">
+                  </div>
+                  <div class="form-group">
+                    <label for="newPassword">Password</label>
+                    <input id="newPassword" type="password" class="form-control" placeholder="Password">
+                  </div>
+                  <div class="modal-footer">
+                    <button id="newAccount" type="submit" class="touch btn btn-default">Create Account</button>
+                  </div>
+                </form>
+              </div>
             </div>
-            <button id='touch' type="submit" class="touch btn btn-default">Submit</button>
-          </form>
+          </div>
+        </div>
+        <div class="modal fade" id="oauth" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Maybe Oauth</h4>
+              </div>
+              <div class="modal-body">
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <script type="text/javascript" src="./js/login.js"></script>
-  </body>
 
+    </div>
+  </div>
+  <script type="text/javascript" src="./js/login.js"></script>
+</body>
 </html>
