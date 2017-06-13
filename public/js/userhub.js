@@ -1,5 +1,25 @@
 $( document ).ready(function() {
 
+
+  // var options = {
+  //   contentType: 'application/json',
+  //   data: JSON.stringify(data),
+  //   dataType: 'json',
+  //   type: 'GET',
+  //   url: '/notes'
+  // }
+
+  $.getJSON('/notes')
+  .done((data)=>{
+    console.log(data);
+  })
+  .fail(($xhr)=>{
+    console.log('fail');
+  })
+
+
+
+
   function makeCard(title, img, id){
     //create panel elements
     let $col = $("<div class=' col-xs-6'></div>");

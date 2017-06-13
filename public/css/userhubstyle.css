@@ -3,11 +3,19 @@
   /*margin: 10px;*/
 }
 
+#myvids{
+  margin-right: 5px;
+}
+
+#sharedvids{
+  margin-left: 5px;
+}
+
 #results{
 }
 
 .background {
-  background-image: url('../images/notesplash2.jpg');
+  /*background-image: url('../images/notesplash2.jpg');*/
   background-repeat: no-repeat;
   background-size: cover;
 }
