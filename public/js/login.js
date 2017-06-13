@@ -1,6 +1,35 @@
 'use strict';
 
 (() => {
+  hideLogIn();
+  hideAcc();
+  hideOAuth();
+
+  function hideLogIn() {
+    $('#log').click(() => {
+      $('#info').toggleClass('hidden');
+    });
+    $('#login').on('hide.bs.modal', () => {
+      $('#info').toggleClass('hidden');
+    });
+  }
+  function hideAcc() {
+    $('#acc').click(() => {
+      $('#info').toggleClass('hidden');
+    });
+    $('#newUser').on('hide.bs.modal', () => {
+      $('#info').toggleClass('hidden');
+    });
+  }
+  function hideOAuth() {
+    $('#oAuth').click(() => {
+      $('#info').toggleClass('hidden');
+    });
+    $('#oauth').on('hide.bs.modal', () => {
+      $('#info').toggleClass('hidden');
+    });
+  }
+
   $('#userLogin').click((event) => {
     event.preventDefault();
     const email = $('#username').val();

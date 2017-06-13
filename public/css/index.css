@@ -31,3 +31,7 @@ form {
 .modalButtons button {
   width: 200px;
 }
+
+.hidden {
+  display: none;
+}
