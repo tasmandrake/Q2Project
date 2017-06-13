@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-
+  logout();
 
   // var options = {
   //   contentType: 'application/json',
@@ -123,4 +123,17 @@ $( document ).ready(function() {
     $("#resultspg").fadeIn();
   });//end click to show results label
 
+  function logout() {
+    $('#logout').click(() => {
+      const options = {
+        contentType: 'application/json',
+        type: 'DELETE',
+        url: '/token'
+      };
+      $.ajax(options)
+        .done(() => {
+          window.location.href = '/index.html';
+        });
+    })
+  }
 });

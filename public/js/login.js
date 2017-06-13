@@ -34,7 +34,6 @@
           window.location.href = '/userhub.html';
         })
         .fail(($xhr) => {
-          console.log($xhr);
           return toasts($xhr.responseText);
         });
     });
