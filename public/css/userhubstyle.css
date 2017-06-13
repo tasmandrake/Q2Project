@@ -6,6 +6,12 @@
 #results{
 }
 
+.background {
+  background-image: url('../images/notesplash2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 a{
   text-decoration: none;
 }
@@ -14,5 +20,5 @@ a:hover{
 }
 .urlContainer{
   display: none;
-  
+
 }
