@@ -27,9 +27,7 @@
   <script id="teamscript" type="text/javascript" src="./app.js"></script>
   <script src="./ckeditor/ckeditor.js"></script>
   <script src="./ckeditor/js/text.js"></script>
-  <script type="text/javascript" src="./js/notes.js">
 
-  </script>
 </head>
 
 <body class="background">
@@ -126,17 +124,50 @@
         }
       </script>
     </div>
+    <div id="notes">
+      <textarea name="name" rows="8" cols="80"></textarea>
+    </div>
+
     <div id="middle">Timestamp:</div>
 
     <div id="right">
-      <div id="editor">
-        <h1>Hello world!</h1>
-      </div>
+      <div id="editor"></div>
     </div>
   </div>
 
   <script>
+    var index = 0;
     initSample();
+    function x(){
+      var hardTag = new Promise((resolve, reject)=>{
+        window.setTimeout(()=>{
+          resolve($('.cke_wysiwyg_frame').contents().children().children('body'))
+        },1000)
+      })
+      return hardTag
+    }
+    x().then((done)=>{
+      done.keydown((e)=>{
+        if(e.which === 13){
+
+          let time = player.getCurrentTime();
+          // console.log(time);
+          // console.log(index);
+          $($('.cke_wysiwyg_frame').contents().children().children('body').children()[index]).attr('data-time', time)
+          console.log($('.cke_wysiwyg_frame').contents().children().children('body').children()[index]);
+
+
+
+          index++;
+        };
+      })
+      done.click((e)=>{
+        // console.log(e.target)
+      })
+    })
+
+  </script>
+  <script type="text/javascript" src="./js/notes.js">
 
   </script>
 </body>
