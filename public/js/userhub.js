@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-  
+
   function makeCard(title, img, id){
     //create panel elements
     let $col = $("<div class=' col-xs-6'></div>");
@@ -53,4 +53,9 @@ $( document ).ready(function() {
     var id = $(e.target).closest('.panel').data('id');
     window.location.href = 'notes.html?id=' + id;
   });//end panelRow Click
+
+  $(".btn").click(function (){
+    $("#resultspg").fadeIn();
+  });//end click to show results label
+
 });

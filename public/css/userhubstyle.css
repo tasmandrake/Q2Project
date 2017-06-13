@@ -22,3 +22,22 @@ a:hover{
   display: none;
 
 }
+
+.col-xs-5 {
+  background-color: rgb(220,212,175);
+  border-radius: 10px;
+}
+
+.results {
+}
+
+#resultspg {
+  background-color: rgb(220,212,175);
+  border-radius: 10px;
+  display: none;
+}
+
+.btn {
+  padding: 10px;
+  padding-bottom: 10px;
+}
