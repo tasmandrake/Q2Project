@@ -8,8 +8,15 @@ const knex = require('../knex');
 const secret = process.env.SECRET;
 
 router.get('/token', (req, res, next) => {
-  if (req.user) {
-    res.send(true);
+  const token = req.cookies.token;
+  if (token) {
+    jwt.verify(token, secret, (error, decoded) => {
+      if (error) {
+        res.clearCookie('token').send(false);
+      } else {
+        res.send(true);
+      }
+    });
   } else {
     res.send(false);
   }
