@@ -1,7 +1,11 @@
 #myvids, #sharedvids, #results{
   border: 1px solid black;
+<<<<<<< HEAD
   background-color: white;
   /*margin: 10px;*/
+=======
+  margin: 10px;
+>>>>>>> 1a131faa03e29460f9e3f00e9b80cc0c4da8e917
 }
 
 #myvids{
@@ -30,4 +34,20 @@ a:hover{
 .urlContainer{
   display: none;
 
+}
+
+.col-xs-4 {
+  background-color: rgb(220,212,175);
+  border-radius: 10px;
+}
+
+#resultspg {
+  background-color: rgb(220,212,175);
+  border-radius: 10px;
+  display: none;
+}
+
+.btn {
+  padding: 10px;
+  padding-bottom: 10px;
 }
