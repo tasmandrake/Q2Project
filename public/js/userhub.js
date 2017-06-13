@@ -1,5 +1,6 @@
 $( document ).ready(function() {
 
+
   // var options = {
   //   contentType: 'application/json',
   //   data: JSON.stringify(data),
@@ -14,7 +15,7 @@ $( document ).ready(function() {
   })
   .fail(($xhr)=>{
     console.log('fail');
-  })
+  });
 
 
 
@@ -72,4 +73,9 @@ $( document ).ready(function() {
     var id = $(e.target).closest('.panel').data('id');
     window.location.href = 'notes.html?id=' + id;
   });//end panelRow Click
+
+  $(".btn").click(function (){
+    $("#resultspg").fadeIn();
+  });//end click to show results label
+
 });
