@@ -1,18 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Special+Elite');
+
+.navbar-default {
+   background-color: rgb(225,225,210);
+   border-color: black;
+   background-image: none;
+}
+
 .background {
   background-image: url('../images/vintage_notebook.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-#binding {
-  background-image: url(https://i.stack.imgur.com/58Fp8.png);
-  background-size: contain;
-  background-color: rgb(210,205,160);
+#spacetop {
+  padding-top: 150px;
+  /*padding-bottom: 250px;*/
 }
 
-#descrip {
-  background-color: rgb(220,212,175);
+#spacebottom {
+  padding-bottom: 325px;
 }
+
+.panel {
+  background: none;
+  border: none;
+
+}
+
+#about {
+  background-image: url('../images/tornpaper.png');
+  background-position: center;
+  background-size: 910px 400px;
+  background-repeat: no-repeat;
+  font-family: Special Elite;
+  /*padding-bottom: 100px;
+  padding-top: 100px;
+  padding-left: 50px;
+  padding-right: 50px;*/
+  padding: 100px;
+  /*opacity: 1;*/
+  /*background-color: rgb(220,212,175);*/
+}
+
 
 .prolinks {
   padding-left: 10px;
@@ -20,9 +49,11 @@
 }
 
 .box {
-  background-color: black;
+  background-color: white;
   opacity: 0.9;
   border: black;
+  box-shadow: 6px 6px 6px gray;
+
 }
 
 .aboutpic {

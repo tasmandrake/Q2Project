@@ -1,3 +1,9 @@
+.navbar-default {
+   background-color: rgb(225,225,210);
+   border-color: black;
+   background-image: none;
+}
+
 .background {
   background-image: url('../images/notebook_clock.jpg');
   background-repeat: no-repeat;
