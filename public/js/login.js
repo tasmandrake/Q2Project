@@ -1,60 +1,122 @@
 'use strict';
 
 (() => {
-  $('#userLogin').click((event) => {
-    event.preventDefault();
-    const email = $('#username').val();
-    const password = $('#password').val();
-    const data = {
-      email: email,
-      password: password
-    };
-    const options = {
-      contentType: 'application/json',
-      data: JSON.stringify(data),
-      dataType: 'json',
-      type: 'POST',
-      url: '/token'
-    };
+  hideLogIn();
+  hideAcc();
+  hideOAuth();
+  login();
+  newUser();
 
-    $.ajax(options)
-      .done((jsonData) => {
-        window.location.href = '/userhub.html';
-      })
-      .fail(($xhr) => {
+  function login() {
+    $('#userLogin').click((event) => {
+      event.preventDefault();
+      const email = $('#username').val();
+      const password = $('#password').val();
+      const data = {
+        email: email,
+        password: password
+      };
+      const options = {
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        type: 'POST',
+        url: '/token'
+      };
 
+      if (!email) {
+        return toasts('Please enter your email');
+      } else if (!password) {
+        return toasts('Please enter your password');
+      }
+      $.ajax(options)
+        .done((jsonData) => {
+          window.location.href = '/userhub.html';
+        })
+        .fail(($xhr) => {
+          console.log($xhr);
+          return toasts($xhr.responseText);
+        });
     });
-  });
+  }
 
-  $('#newAccount').click((event) => {
-    event.preventDefault();
-    const email = $('#newUsername').val();
-    const password = $('#newPassword').val();
-    const first_name = $('#first_name').val();
-    const last_name = $('#last_name').val();
-    const username = $('#newUsername').val();
-    const data = {
-      first_name: first_name,
-      last_name: last_name,
-      email: email,
-      username: username,
-      password: password
-    };
-    const options = {
-      contentType: 'application/json',
-      data: JSON.stringify(data),
-      dataType: 'json',
-      type: 'POST',
-      url: '/users'
-    }
+  function newUser() {
+    $('#newAccount').click((event) => {
+      event.preventDefault();
+      const email = $('#newUsername').val();
+      const password = $('#newPassword').val();
+      const first_name = $('#first_name').val();
+      const last_name = $('#last_name').val();
+      const username = $('#newUsername').val();
+      const data = {
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        username: username,
+        password: password
+      };
+      const options = {
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        type: 'POST',
+        url: '/users'
+      };
 
-    $.ajax(options)
-      .done((jsonData) => {
-        window.location.href = '/userhub.html';
-      })
-      .fail(($xhr) => {
-      })
-      .error(err => console.log(err));
+      if (!email) {
+        return toasts('Please enter your email');
+      } else if (!password) {
+        return toasts('Please enter a password');
+      } else if (!first_name) {
+        return toasts('Please enter a first name');
+      } else if (!last_name) {
+        return toasts('Please enter your last name');
+      } else if (!username) {
+        return toasts('Please enter a username');
+      }
+      $.ajax(options)
+        .done((jsonData) => {
+          window.location.href = '/userhub.html';
+        })
+        .fail(($xhr) => {
+          return toasts($xhr.responseText);
+        })
+    });
+  }
 
-  });
+  function toasts(message) {
+    const $snackbar = $('#snackbar');
+    $snackbar.text(message);
+    $snackbar.addClass('show');
+    setTimeout(() => {
+      $snackbar.toggleClass('show');
+    }, 3000);
+  }
+
+  function hideLogIn() {
+    $('#log').click(() => {
+      $('#info').toggleClass('hidden');
+    });
+    $('#login').on('hide.bs.modal', () => {
+      $('#info').toggleClass('hidden');
+    });
+  }
+
+  function hideAcc() {
+    $('#acc').click(() => {
+      $('#info').toggleClass('hidden');
+    });
+    $('#newUser').on('hide.bs.modal', () => {
+      $('#info').toggleClass('hidden');
+    });
+  }
+
+  function hideOAuth() {
+    $('#oAuth').click(() => {
+      $('#info').toggleClass('hidden');
+    });
+    $('#oauth').on('hide.bs.modal', () => {
+      $('#info').toggleClass('hidden');
+    });
+  }
 })();
