@@ -15,7 +15,7 @@ $( document ).ready(function() {
   })
   .fail(($xhr)=>{
     console.log('fail');
-  })
+  });
 
 
 
