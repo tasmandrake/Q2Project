@@ -8,12 +8,12 @@
   background-image: url(https://i.stack.imgur.com/58Fp8.png);
   background-size: contain;
 }
-#prolinks {
+.prolinks {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-#box {
+.box {
   background-color: black;
   opacity: 0.9;
   border: black;
