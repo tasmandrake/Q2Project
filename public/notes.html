@@ -21,13 +21,13 @@
   <link rel="stylesheet" href="./css/notes.css">
 
   <!--team javascript-->
+  <script type="text/javascript" src="./js/tokencheck.js"></script>
+  <!--tokencheck.js needs to run first-->
 
   <script id="teamscript" type="text/javascript" src="./app.js"></script>
   <script src="./ckeditor/ckeditor.js"></script>
   <script src="./ckeditor/js/text.js"></script>
-  <script type="text/javascript" src="./js/notes.js">
 
-  </script>
 </head>
 
 <body class="background">
@@ -51,6 +51,7 @@
         <li><a href="about.html">About</a></li>
         <li><a href="userhub.html">Profile</a></li>
         <li class="active"><a href="#">Notes<span class="sr-only">(current)</span></a></li>
+        <li><a href="index.html" id="logout">Sign out</a></li>
       </ul>
       <form class="navbar-form navbar-left">
       </form>
@@ -111,10 +112,10 @@
 
         function onPlayerStateChange(event) {
           console.log('changed')
-          if (event.data == YT.PlayerState.PLAYING && !done) {
-            setTimeout(stopVideo, 6000);
-            done = true;
-          }
+          // if (event.data == YT.PlayerState.PLAYING && !done) {
+          //   setTimeout(stopVideo, 6000);
+          //   done = true;
+          // }
           console.log(event.target.getCurrentTime())
         }
 
@@ -123,17 +124,49 @@
         }
       </script>
     </div>
+
+
     <div id="middle">Timestamp:</div>
 
     <div id="right">
-      <div id="editor">
-        <h1>Hello world!</h1>
-      </div>
+      <div id="editor"></div>
     </div>
   </div>
 
   <script>
+    var index = 0;
     initSample();
+    function x(){
+      var hardTag = new Promise((resolve, reject)=>{
+        window.setTimeout(()=>{
+          resolve($('.cke_wysiwyg_frame').contents().children().children('body'))
+        },1000)
+      })
+      return hardTag
+    }
+    x().then((done)=>{
+      done.keydown((e)=>{
+        if(e.which === 13){
+
+          let time = player.getCurrentTime();
+          // console.log(time);
+          // console.log(index);
+          $($('.cke_wysiwyg_frame').contents().children().children('body').children()[index]).attr('data-time', time)
+          console.log($('.cke_wysiwyg_frame').contents().children().children('body').children()[index]);
+          index++;
+        };
+      })
+      done.click((e)=>{
+        var $tag = $(e.target).attr('data-time');
+        var time = Math.round($tag);
+        if(time){
+          player.seekTo(time, true).playVideo()
+        }
+      })
+    })
+
+  </script>
+  <script type="text/javascript" src="./js/notes.js">
 
   </script>
 </body>
