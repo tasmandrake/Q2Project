@@ -1,6 +1,6 @@
 #myvids, #sharedvids, #results{
   border: 1px solid black;
-  /*margin: 10px;*/
+  margin: 10px;
 }
 
 #myvids{
@@ -15,7 +15,7 @@
 }
 
 .background {
-  /*background-image: url('../images/notesplash2.jpg');*/
+  background-image: url('../images/notesplash2.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -29,4 +29,20 @@ a:hover{
 .urlContainer{
   display: none;
 
+}
+
+.col-xs-4 {
+  background-color: rgb(220,212,175);
+  border-radius: 10px;
+}
+
+#resultspg {
+  background-color: rgb(220,212,175);
+  border-radius: 10px;
+  display: none;
+}
+
+.btn {
+  padding: 10px;
+  padding-bottom: 10px;
 }
