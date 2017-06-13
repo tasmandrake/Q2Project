@@ -40,7 +40,8 @@ $( document ).ready(function() {
     //text
     $panel.attr({
       'data-noteid': id,
-      'data-videoUrl': videoUrl
+      'data-videoUrl': videoUrl,
+      'data-description': btoa(description)
     });
     $panelImg.attr('src', img)
     $panelHead.text(panelTitle);
@@ -106,10 +107,12 @@ $( document ).ready(function() {
   });//end submit
 
   $('#myvids').click(function(e){
-    let vidId = $(e.target).closest('.panel').data('videourl');
-    let noteId =  $(e.target).closest('.panel').data('noteid');
+    let element = $(e.target).closest('.panel');
+    let vidId = element.data('videourl');
+    let noteId =  element.data('noteid');
+    let description = element.data('description');
     console.log(e.target);
-    window.location.href = 'notes.html?id=' + vidId + '&noteId=' + noteId ;
+    window.location.href = 'notes.html?id=' + vidId + '&noteId=' + noteId + '&description=' + description;
   });//end panelRow Click
 
 

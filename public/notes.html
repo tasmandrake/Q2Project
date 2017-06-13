@@ -24,7 +24,6 @@
   <script type="text/javascript" src="./js/tokencheck.js"></script>
   <!--tokencheck.js needs to run first-->
 
-  <script id="teamscript" type="text/javascript" src="./app.js"></script>
   <script src="./ckeditor/ckeditor.js"></script>
   <script src="./ckeditor/js/text.js"></script>
 
@@ -76,6 +75,12 @@
             let kv = e.split('=');
             query[kv[0]] = kv[1];
           });
+
+        if (query.description) {
+          query.description = atob(query.description);
+        }
+
+        console.log(query);
         // 2. This code loads the IFrame Player API code asynchronously.
         var tag = document.createElement('script');
         // console.log(document.getElementsByTagName('script')[2]);
@@ -125,9 +130,6 @@
       </script>
     </div>
 
-
-    <div id="middle">Timestamp:</div>
-
     <div id="right">
       <div id="editor"></div>
     </div>
@@ -145,9 +147,17 @@
       return hardTag
     }
     x().then((done)=>{
+      let data;
+      let options = {
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        type: 'POST',
+        url: '/notes'
+      }
       done.keydown((e)=>{
         if(e.which === 13){
-
+          console.log(e.target)
           let time = player.getCurrentTime();
           // console.log(time);
           // console.log(index);
