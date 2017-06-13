@@ -1,3 +1,23 @@
+
+#binding {
+  background-image: url(https://i.stack.imgur.com/58Fp8.png);
+  /*background-image: repeating-linear-gradient();*/
+  /*background-repeat: repeat-x;*/
+  background-size: contain;
+  /*background-position: center;*/
+  /*background-color: red;*/
+}
+#prolinks {
+  /*margin-left: 50px;
+  margin-right: 50px;*/
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.aboutpic {
+  height: 200px;
+  width: 200px;
+
 #flexbox {
   display: flex;
   flex-direction: row;
@@ -24,5 +44,4 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-
 }
