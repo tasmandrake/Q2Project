@@ -124,9 +124,7 @@
         }
       </script>
     </div>
-    <div id="notes">
-      <textarea name="name" rows="8" cols="80"></textarea>
-    </div>
+
 
     <div id="middle">Timestamp:</div>
 
@@ -155,14 +153,15 @@
           // console.log(index);
           $($('.cke_wysiwyg_frame').contents().children().children('body').children()[index]).attr('data-time', time)
           console.log($('.cke_wysiwyg_frame').contents().children().children('body').children()[index]);
-
-
-
           index++;
         };
       })
       done.click((e)=>{
-        // console.log(e.target)
+        var $tag = $(e.target).attr('data-time');
+        var time = Math.round($tag);
+        if(time){
+          player.seekTo(time, true).playVideo()
+        }
       })
     })
 
