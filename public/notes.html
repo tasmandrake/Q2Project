@@ -112,10 +112,10 @@
 
         function onPlayerStateChange(event) {
           console.log('changed')
-          if (event.data == YT.PlayerState.PLAYING && !done) {
-            setTimeout(stopVideo, 6000);
-            done = true;
-          }
+          // if (event.data == YT.PlayerState.PLAYING && !done) {
+          //   setTimeout(stopVideo, 6000);
+          //   done = true;
+          // }
           console.log(event.target.getCurrentTime())
         }
 
