@@ -35,3 +35,53 @@ form {
 .hidden {
   display: none;
 }
+
+/*
+ *
+ * Snackbar
+ *
+ */
+
+ #snackbar {
+     visibility: hidden;
+     min-width: 250px;
+     margin-left: -125px;
+     background-color: rgba(0, 0, 0, 0.7);
+     color: #FFF;
+     text-align: center;
+     border-radius: 2px;
+     padding: 16px;
+     position: fixed;
+     z-index: 2000;
+     left: 50%;
+     bottom: 200px;
+ }
+
+ /* Show the snackbar when clicking on a button (class added with JavaScript) */
+ #snackbar.show {
+     visibility: visible; /* Show the snackbar */
+
+     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+     animation: fadein 0.5s, fadeout 0.5s 2.5s;
+ }
+
+ /* Animations to fade the snackbar in and out */
+ @-webkit-keyframes fadein {
+     from {bottom: 0; opacity: 0;}
+     to {bottom: 200px; opacity: 1;}
+ }
+
+ @keyframes fadein {
+     from {bottom: 0; opacity: 0;}
+     to {bottom: 200px; opacity: 1;}
+ }
+
+ @-webkit-keyframes fadeout {
+     from {bottom: 200px; opacity: 1;}
+     to {bottom: 0; opacity: 0;}
+ }
+
+ @keyframes fadeout {
+     from {bottom: 200px; opacity: 1;}
+     to {bottom: 0; opacity: 0;}
+ }
