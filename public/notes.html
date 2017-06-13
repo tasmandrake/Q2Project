@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Notes</title>
+
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!--team style sheet-->
+  <link rel="stylesheet" href="./css/notes.css">
+
+  <!--team javascript-->
+
+  <script id="teamscript" type="text/javascript" src="./app.js"></script>
+  <script src="./ckeditor/ckeditor.js"></script>
+  <script src="./ckeditor/js/text.js"></script>
+</head>
+
+<body class="background">
+
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../public/index.html">Jump Note</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="about.html">About</a></li>
+        <li><a href="userhub.html">Profile</a></li>
+        <li class="active"><a href="#">Notes<span class="sr-only">(current)</span></a></li>
+      </ul>
+      <form class="navbar-form navbar-left">
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div id="flexbox">
+
+    <div id="left">
+      <div id="player">
+        <!--video goes here-->
+      </div>
+      <script>
+        let query = {};
+        window.location.href.split('?')[1]
+          .split('&')
+          .map(e => {
+            let kv = e.split('=');
+            query[kv[0]] = kv[1];
+          });
+        // 2. This code loads the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+        console.log(document.getElementsByTagName('script')[2]);
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[2];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // 3. This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        var player;
+
+        function onYouTubeIframeAPIReady() {
+          player = new YT.Player('player', {
+            height: '390',
+            width: '640',
+            videoId: query.id,
+            events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange
+            }
+          });
+        }
+
+        // 4. The API will call this function when the video player is ready.
+        function onPlayerReady(event) {
+          // event.target.playVideo();
+          console.log(event.target.getCurrentTime())
+        }
+
+        // 5. The API calls this function when the player's state changes.
+        //    The function indicates that when playing a video (state=1),
+        //    the player should play for six seconds and then stop.
+        var done = false;
+
+        function onPlayerStateChange(event) {
+          console.log('changed')
+          if (event.data == YT.PlayerState.PLAYING && !done) {
+            setTimeout(stopVideo, 6000);
+            done = true;
+          }
+          console.log(event.target.getCurrentTime())
+        }
+
+        function stopVideo() {
+          player.stopVideo();
+        }
+      </script>
+    </div>
+    <div id="middle">Timestamp:</div>
+
+    <div id="right">
+      <div id="editor">
+        <h1>Hello world!</h1>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    initSample();
+  </script>
+</body>
+
+</html>
