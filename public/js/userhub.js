@@ -12,16 +12,51 @@ $( document ).ready(function() {
   $.getJSON('/notes')
   .done((data)=>{
     console.log(data);
+    for (let i = 0; i < data.length; i++) {
+      let d = data[i];
+      let descrip = d.description;
+      let id = d.id;
+      let img = d.img;
+      let noteTitle = d.note_title;
+      let vidTitle = d.video_title;
+      let vidUrl = d.video_url;
+      makeNoteCards(id, noteTitle, img, descrip, vidTitle, vidUrl);
+    }
   })
   .fail(($xhr)=>{
     console.log('fail');
   });
 
+  function makeNoteCards(id, panelTitle, img, description, videoTitle, videoUrl){
 
+    //elements
+    let $myVidsRow = $('#myvidsrow');
+    let $col = $("<div class=' col-xs-12'></div>");
+    let $panel = $("<div class='panel panel-default'></div>");
+    let $panelHead = $("<div class='panel-heading'>");
+    let $panelBody = $("<div class='panel-body'>");
+    let $panelImg = $("<img class = 'img-responsive center-block'>");
 
+    //text
+    $panel.attr({
+      'data-noteid': id,
+      'data-videoUrl': videoUrl
+    });
+    $panelImg.attr('src', img)
+    $panelHead.text(panelTitle);
+    $panelBody.text(description);
+
+    //appending
+    $col.append($panel);
+    $panel.append($panelHead);
+    $panel.append($panelBody);
+    $panelBody.prepend($panelImg);
+    $myVidsRow.append($col);
+  }
 
   function makeCard(title, img, id){
-    //create panel elements
+
+    //elements
     let $col = $("<div class=' col-xs-6'></div>");
     let $panel = $("<div class='panel panel-default'></div>");
     let $panelHead = $("<div class='panel-heading'>");
@@ -29,6 +64,7 @@ $( document ).ready(function() {
     let $panelRow = $('#panelRow');
     let $panelImg = $("<img class = 'img-responsive center-block'>");
     let $hidden = $("<div class='urlContainer'></div");
+
     //appending the panels
     $hidden.text(id);
     $panel.append($panelHead);
@@ -68,6 +104,15 @@ $( document ).ready(function() {
       });//fail
     }
   });//end submit
+
+  $('#myvids').click(function(e){
+    let vidId = $(e.target).closest('.panel').data('videourl');
+    let noteId =  $(e.target).closest('.panel').data('noteid');
+    console.log(e.target);
+    window.location.href = 'notes.html?id=' + vidId + '&noteId=' + noteId ;
+  });//end panelRow Click
+
+
 
   $('#panelRow').click(function(e){
     var id = $(e.target).closest('.panel').data('id');

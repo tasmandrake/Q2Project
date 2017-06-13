@@ -13,12 +13,12 @@ router.use((req, res, next) => {
 
 router.get('/notes', (req, res, next) => {
   const userId = req.user.id;
-
   knex('notes')
-    .select('*')
-    .where('user_id', userId)
-    .then(notes => res.send(notes))
-    .catch(error => console.error(error));
+  .select('notes.id', 'notes.title AS note_title', 'video_url', 'img', 'videos.title AS video_title', 'description')
+  .where('user_id', userId)
+  .innerJoin('videos', 'videos.id', 'notes.video_id')
+  .then(notes => res.send(notes))
+  .catch(error => console.error(error));
 });
 
 router.get('/notes/:id', (req, res, next) => {
