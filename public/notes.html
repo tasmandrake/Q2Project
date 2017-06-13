@@ -25,6 +25,9 @@
   <script id="teamscript" type="text/javascript" src="./app.js"></script>
   <script src="./ckeditor/ckeditor.js"></script>
   <script src="./ckeditor/js/text.js"></script>
+  <script type="text/javascript" src="./js/notes.js">
+
+  </script>
 </head>
 
 <<<<<<< HEAD
@@ -65,6 +68,9 @@
       <div id="player">
         <!--video goes here-->
       </div>
+
+
+
       <script>
         let query = {};
         window.location.href.split('?')[1]
@@ -75,7 +81,7 @@
           });
         // 2. This code loads the IFrame Player API code asynchronously.
         var tag = document.createElement('script');
-        console.log(document.getElementsByTagName('script')[2]);
+        // console.log(document.getElementsByTagName('script')[2]);
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[2];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
@@ -132,6 +138,7 @@
 
   <script>
     initSample();
+
   </script>
 </body>
 
