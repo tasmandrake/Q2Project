@@ -84,7 +84,7 @@ $( document ).ready(function() {
     if(text.length > 0){
       var $xhr = $.getJSON('https://www.googleapis.com/youtube/v3/search/?part=snippet&q='+text+'&maxResults=10&key=AIzaSyC0b4jxH6E1DbtJm3S_ZOZx5ahcOmthPDk');
       $xhr.done(function(data){
-        let vids = data.items
+        let vids = data.items;
         if ($xhr.status !== 200){
             return;
         }
@@ -121,6 +121,8 @@ $( document ).ready(function() {
 
   $(".btn").click(function (){
     $("#resultspg").fadeIn();
+    $(".btn").css("background", "rgb(220,212,175)");
+    $(".btn").css("color", "black");
   });//end click to show results label
 
   function logout() {
