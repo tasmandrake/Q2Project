@@ -1,7 +1,5 @@
-
-
 $(document).ready(function() {
-
+  logout();
 
   var clicked = 0;
   // var time = player.getCurrentTime();
@@ -37,4 +35,17 @@ $(document).ready(function() {
   });
 
   // player.getCurrentTime():Number;
+  function logout() {
+    $('#logout').click(() => {
+      const options = {
+        contentType: 'application/json',
+        type: 'DELETE',
+        url: '/token'
+      };
+      $.ajax(options)
+        .done(() => {
+          window.location.href = '/index.html';
+        });
+    })
+  }
 });
