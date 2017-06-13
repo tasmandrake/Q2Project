@@ -147,12 +147,8 @@
     x().then((done)=>{
       done.keydown((e)=>{
         if(e.which === 13){
-
           let time = player.getCurrentTime();
-          // console.log(time);
-          // console.log(index);
           $($('.cke_wysiwyg_frame').contents().children().children('body').children()[index]).attr('data-time', time)
-          console.log($('.cke_wysiwyg_frame').contents().children().children('body').children()[index]);
           index++;
         };
       })
