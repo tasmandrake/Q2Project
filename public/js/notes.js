@@ -26,9 +26,14 @@ $(document).ready(() => {
           type: 'GET',
           url: '/videos/url?vidurl=' + query.id
         };
+        console.log(videoOptions);
         $.ajax(videoOptions).done((data) => {
           const noteId = data[0].notesId;
-          if (noteId) {
+          // if (noteId) {
+          // console.log(data);
+          // }
+          if (!true) {
+            console.log('here');
             $('.cke_wysiwyg_frame')
               .contents()
               .children()
@@ -86,6 +91,7 @@ $(document).ready(() => {
               type: 'PATCH',
               url: '/notes/' + $('#right').data('noteid')
             };
+            console.log(notesOptions);
             $.ajax(notesOptions)
               .done()
               .catch(error => console.error(error));
