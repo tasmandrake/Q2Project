@@ -43,21 +43,71 @@ $(document).ready(() => {
             type: 'POST',
             url: '/notes'
           };
-          $.ajax(input).done((returning) => {
-            $('#right').attr('data-noteid', returning[0].id);
-          }).catch((error) => {
-            console.error(error);
-          });
+          $.ajax(input)
+            .done((returning) => {
+              $('#right').attr('data-noteid', returning[0].id);
+            })
+            .catch(error => console.error(error));
         });
+        done.keydown((e) => {
+          if (e.which === 13) {
+            let time = player.getCurrentTime();
+            if (query.live === 'true') {
+              time = player.getDuration();
+            }
+            $($('.cke_wysiwyg_frame')
+              .contents()
+              .children()
+              .children('body')
+              .children()[index])
+              .attr('data-time', time);
+            index++;
+
+            const data = {
+              note_file: $('.cke_wysiwyg_frame')
+                .contents()
+                .children()
+                .children('body')
+                .html()
+            };
+            const notesOptions = {
+              contentType: 'application/json',
+              data: JSON.stringify(data),
+              dataType: 'json',
+              type: 'PATCH',
+              url: '/notes/' + $('#right').data('noteid')
+            };
+            $.ajax(notesOptions)
+              .done()
+              .catch(error => console.error(error));
+          }
+        });
+      } else if (query.noteId) {
+        const getOptions = {
+          contentType: 'application/json',
+          type: 'GET',
+          url: '/notes/' + query.noteId
+        };
+
+        $.ajax(getOptions).done((data) => {
+          const noteData = data[0].note_file;
+
+          $('.cke_wysiwyg_frame')
+            .contents()
+            .children()
+            .children('body')
+            .html(noteData);
+        })
+        .catch(err => console.log(err));
+
         done.keydown((e) => {
           if (e.which === 13) {
             const time = player.getCurrentTime();
-            console.log(time);
             $($('.cke_wysiwyg_frame')
-                .contents()
-                .children()
-                .children('body')
-                .children()[index])
+              .contents()
+              .children()
+              .children('body')
+              .children()[index])
               .attr('data-time', time);
             index++;
 
@@ -73,43 +123,11 @@ $(document).ready(() => {
               data: JSON.stringify(data),
               dataType: 'json',
               type: 'PATCH',
-              url: '/notes/' + $('#right').data('noteid')
+              url: '/notes/' + query.noteId
             };
-            $.ajax(notesOptions).done().catch((error) => {
-              console.error(error);
-            });
-          }
-        });
-      } else if (query.live === 'true') {
-        done.keydown((e) => {
-          if (e.which === 13) {
-            const time = player.getDuration();
-            console.log(time);
-            $($('.cke_wysiwyg_frame')
-                .contents()
-                .children()
-                .children('body')
-                .children()[index])
-              .attr('data-time', time);
-            index++;
-
-            const data = {
-              note_file: $('.cke_wysiwyg_frame')
-                .contents()
-                .children()
-                .children('body')
-                .html()
-            };
-            const notesOptions = {
-              contentType: 'application/json',
-              data: JSON.stringify(data),
-              dataType: 'json',
-              type: 'PATCH',
-              url: '/notes/' + $('#right').data('noteid')
-            };
-            $.ajax(notesOptions).done().catch((error) => {
-              console.error(error);
-            });
+            $.ajax(notesOptions)
+              .done()
+              .catch(error => console.error(error));
           }
         });
       } else {
@@ -170,3 +188,25 @@ $(document).ready(() => {
     });
   }
 });
+
+
+/*
+if (query.noteId) {
+  const getOptions = {
+    contentType: 'application/json',
+    type: 'GET',
+    url: '/notes/' + query.noteId
+  };
+  console.log(getOptions.url);
+  $.ajax(getOptions).done((data) => {
+    const noteData = data.note_file;
+    $('.cke_wysiwyg_frame')
+      .contents()
+      .children()
+      .children('body')
+      .html(noteData);
+  }).catch(err => console.log(err));
+}
+
+
+*/
