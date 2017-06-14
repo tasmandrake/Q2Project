@@ -8,14 +8,6 @@ const knex = require('../knex');
 const saltRounds = 10;
 const secret = process.env.SECRET;
 
-router.get('/users', (req, res, next) => {
-  // do we need gets for users?
-});
-
-router.get('/users/:id', (req, res, next) => {
-  // do we need gets for users?
-});
-
 router.post('/users', (req, res, next) => {
   const body = req.body;
   if (!body.first_name) {
