@@ -1,8 +1,6 @@
 $( document ).ready(function() {
   logout();
 
-
-
   $.getJSON('/notes')
   .done((data)=>{
     console.log(data);
