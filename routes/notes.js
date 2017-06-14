@@ -45,6 +45,8 @@ router.post('/notes', (req, res, next) => {
   const body = req.body;
   const userId = req.user.id;
   const videoId = body.video_id;
+  console.log('userId', userId);
+  console.log('videoID', videoId);
 
   if (!body.note_file) {
     return res.status(400)
@@ -70,6 +72,8 @@ router.patch('/notes/:id', (req, res, next) => {
   const body = req.body;
   const userId = req.user.id;
   const noteId = req.params.id;
+  console.log('patch userId', userId);
+  console.log('note_id', noteId);
 
   if (!Object.keys(body).length) {
     return res.status(400)

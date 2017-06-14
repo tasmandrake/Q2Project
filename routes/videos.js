@@ -22,17 +22,21 @@ router.get('/videos', (req, res, next) => {
 router.get('/videos/url', (req, res, next)=>{
   let q = req.query.vidurl;
   let tok = req.user.id;
-
-  knex('videos').select('videos.id AS vidId', 'note_file', 'notes.id AS notesId').where('video_url', q).innerJoin('notes', 'videos.id', 'notes.video_id').where('notes.user_id', tok).then((result)=>{
-    console.log(result);
-    if (result.length) {
-      return res.send(result);
+  console.log('q: ', q);
+  knex('videos').select('videos.id AS vidId', 'note_file', 'notes.id AS notesId')
+  .where('video_url', q)
+  .innerJoin('notes', 'videos.id', 'notes.video_id')
+  .where('notes.user_id', tok)
+  .then((result)=>{
+    console.log(result)
+    if(result.length){
+      return res.send(result)
     }
-    knex('videos')
-      .select('id AS vidId')
-      .where('video_url', q)
-      .then(videoId => res.send(videoId))
-      .catch(error => console.error(error));
+    else{
+      knex('videos').select('id AS vidId').where('video_url', q).then((data) => {
+        console.log(data)
+        res.send(data)})
+    }
   }).catch(error => console.error(error))
 })
 

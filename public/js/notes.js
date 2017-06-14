@@ -28,8 +28,9 @@ $(document).ready(() => {
         };
         console.log(videoOptions);
         $.ajax(videoOptions).done((data) => {
+          console.log('query: ', query)
           console.log(data);
-          if (!true) {
+          if (data[0].note_file) {
             console.log('here');
             $('.cke_wysiwyg_frame')
               .contents()
@@ -37,7 +38,9 @@ $(document).ready(() => {
               .children('body')
               .html(data[0].note_file);
             $('#right').attr('data-noteid', data[0].notesId);
+            console.log(data);
           } else {
+            console.log(data);
             const noteData = {
               video_id: data[0].vidId,
               note_file: $('.cke_wysiwyg_frame')
@@ -55,6 +58,7 @@ $(document).ready(() => {
             };
             $.ajax(input)
               .done((returning) => {
+                console.log(returning[0].id);
                 $('#right').attr('data-noteid', returning[0].id);
               })
               .catch(error => console.error(error));
