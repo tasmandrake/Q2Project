@@ -44,7 +44,7 @@ router.get('/notes/:id', (req, res, next) => {
 router.post('/notes', (req, res, next) => {
   const body = req.body;
   const userId = req.user.id;
-  const videoId = req.user.video_id;
+  const videoId = body.video_id;
 
   if (!body.title) {
     return res.status(400)

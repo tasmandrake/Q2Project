@@ -27,7 +27,7 @@ $( document ).ready(function() {
     console.log('fail');
   });
 
-  function makeNoteCards(id, panelTitle, img, description, videoTitle, videoUrl){
+  function makeNoteCards(id, panelTitle, img, description, videoTitle, videoUrl, title){
 
     //elements
     let $myVidsRow = $('#myvidsrow');
@@ -40,7 +40,8 @@ $( document ).ready(function() {
     //text
     $panel.attr({
       'data-noteid': id,
-      'data-videoUrl': videoUrl
+      'data-videoUrl': videoUrl,
+      'data-description': btoa(description)
     });
     $panelImg.attr('src', img)
     $panelHead.text(panelTitle);
@@ -54,7 +55,7 @@ $( document ).ready(function() {
     $myVidsRow.append($col);
   }
 
-  function makeCard(title, img, id){
+  function makeCard(title, img, id, description, live){
 
     //elements
     let $col = $("<div class=' col-xs-6'></div>");
@@ -68,7 +69,15 @@ $( document ).ready(function() {
     //appending the panels
     $hidden.text(id);
     $panel.append($panelHead);
-    $panel.data('id',id);
+    // $panel.data('id',id);
+    $panel.attr({
+      'data-id': id,
+      'data-live': live,
+      'data-description': description,
+      'data-img': img,
+      'data-title': title
+    });
+
     $panelHead.text(title);
     $panelBody.append($panelImg);
     $panelBody.append($hidden);
@@ -84,6 +93,7 @@ $( document ).ready(function() {
     if(text.length > 0){
       var $xhr = $.getJSON('https://www.googleapis.com/youtube/v3/search/?part=snippet&q='+text+'&maxResults=10&key=AIzaSyC0b4jxH6E1DbtJm3S_ZOZx5ahcOmthPDk');
       $xhr.done(function(data){
+        console.log(data)
         let vids = data.items;
         if ($xhr.status !== 200){
             return;
@@ -95,7 +105,12 @@ $( document ).ready(function() {
             var img = vids[i].snippet.thumbnails.medium.url;
             var id = vids[i].id.videoId;
             var description = vids[i].snippet.description;
-            makeCard(title, img, id);
+            var live = false;
+            if(vids[i].snippet.liveBroadcastContent === 'live'){
+              live = true;
+            }
+
+            makeCard(title, img, id, description, live);
           }
         }
       });//end outer done
@@ -106,17 +121,43 @@ $( document ).ready(function() {
   });//end submit
 
   $('#myvids').click(function(e){
-    let vidId = $(e.target).closest('.panel').data('videourl');
-    let noteId =  $(e.target).closest('.panel').data('noteid');
+    let element = $(e.target).closest('.panel');
+    let vidId = element.data('videourl');
+    let noteId =  element.data('noteid');
+    let description = element.data('description');
+    let img = element.data('img');
+    let title = element.data('title');
     console.log(e.target);
-    window.location.href = 'notes.html?id=' + vidId + '&noteId=' + noteId ;
+    window.location.href = 'notes.html?id=' + vidId + '&noteId=' + noteId + '&description=' + description;
   });//end panelRow Click
 
 
-
   $('#panelRow').click(function(e){
-    var id = $(e.target).closest('.panel').data('id');
-    window.location.href = 'notes.html?id=' + id;
+    console.log($(e.target).closest('.panel'));
+    let element = $(e.target).closest('.panel')
+    let id = element.data('id');
+    let title = element.data('title');
+    let live = element.data('live');
+    let description = element.data('description');
+    let img = element.data('img');
+    let data = {
+      video_url: id,
+      img: img,
+      title: title,
+      description: description
+    }
+    let options = {
+      contentType: 'application/json',
+      data: JSON.stringify(data),
+      dataType: 'json',
+      type: 'POST',
+      url: '/videos'
+    }
+    $.ajax(options).done((data)=>{
+      console.log('notes.html?id=' + id +'&live=' + live)
+      window.location.href = 'notes.html?id=' + id +'&live=' + live;
+    })
+
   });//end panelRow Click
 
   $(".btn").click(function (){

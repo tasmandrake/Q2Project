@@ -19,6 +19,13 @@ router.get('/videos', (req, res, next) => {
     .catch(error => console.error(error));
 });
 
+router.get('/videos/url', (req, res, next)=>{
+  let q = req.query.vidurl
+  knex('videos').select('id').where('video_url', q).then((result)=>{
+    res.send(result)
+  }).catch(error => console.error(error))
+})
+
 router.get('/videos/:id', (req, res, next) => {
   const id = req.params.id;
 

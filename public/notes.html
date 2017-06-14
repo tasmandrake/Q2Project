@@ -24,7 +24,6 @@
   <script type="text/javascript" src="./js/tokencheck.js"></script>
   <!--tokencheck.js needs to run first-->
 
-  <script id="teamscript" type="text/javascript" src="./app.js"></script>
   <script src="./ckeditor/ckeditor.js"></script>
   <script src="./ckeditor/js/text.js"></script>
 
@@ -76,6 +75,14 @@
             let kv = e.split('=');
             query[kv[0]] = kv[1];
           });
+
+        if (query.description) {
+          query.description = atob(query.description);
+          // query.img = atob(query.img);
+          // query.title=atob(query.title)
+        }
+
+        console.log(query);
         // 2. This code loads the IFrame Player API code asynchronously.
         var tag = document.createElement('script');
         // console.log(document.getElementsByTagName('script')[2]);
@@ -97,6 +104,7 @@
               'onStateChange': onPlayerStateChange
             }
           });
+          //console.log(player)
         }
 
         // 4. The API will call this function when the video player is ready.
@@ -125,9 +133,6 @@
       </script>
     </div>
 
-
-    <div id="middle">Timestamp:</div>
-
     <div id="right">
       <div id="editor"></div>
     </div>
@@ -145,11 +150,63 @@
       return hardTag
     }
     x().then((done)=>{
+      queryTwo ={}
+      window.location.href.split('?')[1]
+        .split('&')
+        .map(e => {
+          let kv = e.split('=');
+          queryTwo[kv[0]] = kv[1];
+        });
+      let options = {
+        contentType: 'application/json',
+        type: 'GET',
+        url:'/videos/url?vidurl=' + queryTwo.id
+      }
+      $.ajax(options).done((data)=>{
+        //console.log(data[0].id)
+
+        let noteData = {
+          title: 'crap',
+          video_id: data[0].id,
+          note_file: $('.cke_wysiwyg_frame').contents().children().children('body').html()
+        }
+        console.log($('.cke_wysiwyg_frame').contents().children().children('body').html());
+        let input = {
+          contentType: 'application/json',
+          data: JSON.stringify(noteData),
+          dataType: 'json',
+          type: 'POST',
+          url: '/notes'
+        }
+        console.log(noteData)
+        $.ajax(input).done((returning)=>{
+          $('#right').attr('data-noteid', returning[0].id);
+        }).catch((error)=>{
+          console.log(error)
+        })
+
+      })
       done.keydown((e)=>{
         if(e.which === 13){
           let time = player.getCurrentTime();
           $($('.cke_wysiwyg_frame').contents().children().children('body').children()[index]).attr('data-time', time)
           index++;
+
+          let data = {
+            note_file: $('.cke_wysiwyg_frame').contents().children().children('body').html()
+          }
+
+          let options = {
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            type: 'PATCH',
+            url: '/notes/' + $('#right').data('noteid')
+          }
+          $.ajax(options).done().catch((error)=>{
+            console.log(error)
+          })
+
         };
       })
       done.click((e)=>{
