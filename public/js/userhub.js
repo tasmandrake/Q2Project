@@ -1,13 +1,7 @@
 $( document ).ready(function() {
   logout();
 
-  // var options = {
-  //   contentType: 'application/json',
-  //   data: JSON.stringify(data),
-  //   dataType: 'json',
-  //   type: 'GET',
-  //   url: '/notes'
-  // }
+
 
   $.getJSON('/notes')
   .done((data)=>{
@@ -88,6 +82,7 @@ $( document ).ready(function() {
   }
 
   $('form').submit(function(event){
+    $('#panelRow').children().remove();
     event.preventDefault();
     var text = $('#search').val().replace(' ', "+");
     if(text.length > 0){
@@ -153,6 +148,7 @@ $( document ).ready(function() {
       type: 'POST',
       url: '/videos'
     }
+    console.log(data);
     $.ajax(options).done((data)=>{
       console.log('notes.html?id=' + id +'&live=' + live)
       window.location.href = 'notes.html?id=' + id +'&live=' + live;
