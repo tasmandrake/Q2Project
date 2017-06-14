@@ -1,14 +1,6 @@
 $( document ).ready(function() {
   logout();
 
-  // var options = {
-  //   contentType: 'application/json',
-  //   data: JSON.stringify(data),
-  //   dataType: 'json',
-  //   type: 'GET',
-  //   url: '/notes'
-  // }
-
   $.getJSON('/notes')
   .done((data)=>{
     console.log(data);
@@ -88,6 +80,7 @@ $( document ).ready(function() {
   }
 
   $('form').submit(function(event){
+    $('#panelRow').children().remove();
     event.preventDefault();
     var text = $('#search').val().replace(' ', "+");
     if(text.length > 0){

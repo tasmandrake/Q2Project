@@ -22,6 +22,7 @@ router.get('/videos', (req, res, next) => {
 router.get('/videos/url', (req, res, next)=>{
   let q = req.query.vidurl;
   let tok = req.user.id;
+
   knex('videos').select('videos.id AS vidId', 'note_file', 'notes.id AS notesId').where('video_url', q).innerJoin('notes', 'videos.id', 'notes.video_id').where('notes.user_id', tok).then((result)=>{
     if(result.length){
       return res.send(result)
@@ -57,7 +58,7 @@ router.post('/videos', (req, res, next) => {
   }
 
   var isThere;
-  knex('videos').select('video_url','id').where('video_url', req.body.video_url).then((data) =>{
+  knex('videos').select('video_url','id AS vidId').where('video_url', req.body.video_url).then((data) =>{
     console.log(data)
     isThere = data.length
     if(isThere){
