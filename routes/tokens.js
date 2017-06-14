@@ -23,10 +23,6 @@ router.get('/token', (req, res, next) => {
 });
 
 router.post('/token', (req, res, next) => {
-  // email or username for login?
-  // if username, we should change migration so that username is also a unique value
-  // const username = req.body.username;
-
   const email = req.body.email;
   const password = req.body.password;
   if (!email) {
@@ -41,7 +37,6 @@ router.post('/token', (req, res, next) => {
 
   knex('users')
     .where('email', email)
-    // .where('username', username)
     .then((user) => {
       const hashPassword = user[0].hashed_password;
 
