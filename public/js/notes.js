@@ -27,13 +27,14 @@ $(document).ready(() => {
           url: '/videos/url?vidurl=' + query.id
         };
         $.ajax(videoOptions).done((data) => {
-          if (data[0].notesId) {
+          const noteId = data[0].notesId;
+          if (noteId) {
             $('.cke_wysiwyg_frame')
               .contents()
               .children()
               .children('body')
               .html(data[0].note_file);
-            $('#right').attr('data-noteid', data[0].notesId);
+            $('#right').attr('data-noteid', noteId);
           } else {
             const noteData = {
               video_id: data[0].vidId,
