@@ -153,6 +153,7 @@ $( document ).ready(function() {
       type: 'POST',
       url: '/videos'
     }
+    console.log(data);
     $.ajax(options).done((data)=>{
       console.log('notes.html?id=' + id +'&live=' + live)
       window.location.href = 'notes.html?id=' + id +'&live=' + live;
