@@ -20,8 +20,9 @@ router.get('/videos', (req, res, next) => {
 });
 
 router.get('/videos/url', (req, res, next)=>{
-  let q = req.query.vidurl
-  knex('videos').select('id').where('video_url', q).then((result)=>{
+  let q = req.query.vidurl;
+  let tok = req.user.id;
+  knex('videos').select('video.id AS vidId', 'note_file', 'notes.id AS notesId').where('video_url', q).innerJoin('notes', 'videos.id', 'notes.video_id').where('notes.user_id', tok).then((result)=>{
     res.send(result)
   }).catch(error => console.error(error))
 })
@@ -44,21 +45,37 @@ router.get('/videos/:id', (req, res, next) => {
 
 router.post('/videos', (req, res, next) => {
   const body = req.body;
-
-  if (!req.body.video_url) {
+  if (!body.video_url) {
     return res.status(400)
-      .set({ 'Content-Type': 'plain/text' })
-      .send('Video URL must not be blank');
+    .set({ 'Content-Type': 'plain/text' })
+    .send('Video URL must not be blank');
   }
 
-  knex('videos')
-    .insert(body)
-    .returning('*')
-    .then((newVideos) => {
-      // res.send() or res.redirect
-      res.send(newVideos);
-    })
-    .catch(error => console.error(error));
+  var isThere;
+  knex('videos').select('video_url','id').where('video_url', req.body.video_url).then((data) =>{
+    isThere = data[0].id;
+    if(isThere){
+
+      return res.status(200).send(''+isThere)
+    }
+    else{
+      knex('videos')
+        .insert(body)
+        .returning('*')
+        .then((newVideos) => {
+          // res.send() or res.redirect
+          res.send(newVideos);
+        })
+        .catch(error => console.error(error));
+    }
+} ).catch(err => console.error(err));
+
+
+
+
+
+
+
 });
 
 module.exports = router;
