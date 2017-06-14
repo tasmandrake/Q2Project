@@ -74,6 +74,7 @@ $(document).ready(() => {
   }
 
   $('form').submit((event) => {
+    $('#panelRow').children().remove();
     event.preventDefault();
     const text = $('#search').val().replace(' ', '+');
     if (text.length > 0) {
