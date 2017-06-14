@@ -46,6 +46,8 @@ router.post('/notes', (req, res, next) => {
   const userId = req.user.id;
   const videoId = body.video_id;
 
+  
+
   if (!body.title) {
     return res.status(400)
       .set({ 'Content-Type': 'plain/text' })
