@@ -27,27 +27,35 @@ $(document).ready(() => {
           url: '/videos/url?vidurl=' + query.id
         };
         $.ajax(videoOptions).done((data) => {
-          const noteData = {
-            title: 'crap',
-            video_id: data[0].id,
-            note_file: $('.cke_wysiwyg_frame')
+          if (data.id) {
+            $('.cke_wysiwyg_frame')
               .contents()
               .children()
               .children('body')
-              .html()
-          };
-          const input = {
-            contentType: 'application/json',
-            data: JSON.stringify(noteData),
-            dataType: 'json',
-            type: 'POST',
-            url: '/notes'
-          };
-          $.ajax(input)
-            .done((returning) => {
-              $('#right').attr('data-noteid', returning[0].id);
-            })
-            .catch(error => console.error(error));
+              .html(data.note_file);
+          } else {
+            const noteData = {
+              title: 'crap',
+              video_id: data[0].id,
+              note_file: $('.cke_wysiwyg_frame')
+                .contents()
+                .children()
+                .children('body')
+                .html()
+            };
+            const input = {
+              contentType: 'application/json',
+              data: JSON.stringify(noteData),
+              dataType: 'json',
+              type: 'POST',
+              url: '/notes'
+            };
+            $.ajax(input)
+              .done((returning) => {
+                $('#right').attr('data-noteid', returning[0].id);
+              })
+              .catch(error => console.error(error));
+          }
         });
         done.keydown((e) => {
           if (e.which === 13) {
@@ -56,10 +64,10 @@ $(document).ready(() => {
               time = player.getDuration();
             }
             $($('.cke_wysiwyg_frame')
-              .contents()
-              .children()
-              .children('body')
-              .children()[index])
+                .contents()
+                .children()
+                .children('body')
+                .children()[index])
               .attr('data-time', time);
             index++;
 
@@ -90,24 +98,24 @@ $(document).ready(() => {
         };
 
         $.ajax(getOptions).done((data) => {
-          const noteData = data[0].note_file;
+            const noteData = data[0].note_file;
 
-          $('.cke_wysiwyg_frame')
-            .contents()
-            .children()
-            .children('body')
-            .html(noteData);
-        })
-        .catch(err => console.log(err));
+            $('.cke_wysiwyg_frame')
+              .contents()
+              .children()
+              .children('body')
+              .html(noteData);
+          })
+          .catch(err => console.log(err));
 
         done.keydown((e) => {
           if (e.which === 13) {
             const time = player.getCurrentTime();
             $($('.cke_wysiwyg_frame')
-              .contents()
-              .children()
-              .children('body')
-              .children()[index])
+                .contents()
+                .children()
+                .children('body')
+                .children()[index])
               .attr('data-time', time);
             index++;
 
