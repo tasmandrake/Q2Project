@@ -27,16 +27,17 @@ $(document).ready(() => {
           url: '/videos/url?vidurl=' + query.id
         };
         $.ajax(videoOptions).done((data) => {
-          if (data.id) {
+          if (data[0].notesId) {
             $('.cke_wysiwyg_frame')
               .contents()
               .children()
               .children('body')
-              .html(data.note_file);
+              .html(data[0].note_file);
+            $('#right').attr('data-noteid', data[0].notesId);
           } else {
             const noteData = {
               title: 'crap',
-              video_id: data[0].id,
+              video_id: data[0].vidId,
               note_file: $('.cke_wysiwyg_frame')
                 .contents()
                 .children()
