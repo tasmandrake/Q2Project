@@ -22,7 +22,7 @@ router.get('/videos', (req, res, next) => {
 router.get('/videos/url', (req, res, next)=>{
   let q = req.query.vidurl;
   let tok = req.user.id;
-  knex('videos').select('video.id AS vidId', 'note_file', 'notes.id AS notesId').where('video_url', q).innerJoin('notes', 'videos.id', 'notes.video_id').where('notes.user_id', tok).then((result)=>{
+  knex('videos').select('videos.id AS vidId', 'note_file', 'notes.id AS notesId').where('video_url', q).innerJoin('notes', 'videos.id', 'notes.video_id').where('notes.user_id', tok).then((result)=>{
     res.send(result)
   }).catch(error => console.error(error))
 })

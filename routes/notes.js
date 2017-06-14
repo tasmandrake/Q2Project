@@ -14,7 +14,7 @@ router.use((req, res, next) => {
 router.get('/notes', (req, res, next) => {
   const userId = req.user.id;
   knex('notes')
-  .select('notes.id', 'notes.title AS note_title', 'video_url', 'img', 'videos.title AS video_title', 'description')
+  .select('notes.id', 'video_url', 'img', 'videos.title AS video_title', 'description')
   .where('user_id', userId)
   .innerJoin('videos', 'videos.id', 'notes.video_id')
   .then(notes => res.send(notes))
@@ -46,11 +46,7 @@ router.post('/notes', (req, res, next) => {
   const userId = req.user.id;
   const videoId = body.video_id;
 
-  if (!body.title) {
-    return res.status(400)
-      .set({ 'Content-Type': 'plain/text' })
-      .send('Note title must not be blank');
-  } else if (!body.note_file) {
+  if (!body.note_file) {
     return res.status(400)
       .set({ 'Content-Type': 'plain/text' })
       .send('Note must not be empty');
