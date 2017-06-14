@@ -14,7 +14,7 @@
 
 #info {
   width: 600px;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 30px;
   border-radius: 10px;
 }
@@ -30,7 +30,17 @@ form {
 }
 .modalButtons button {
   width: 200px;
+  /*background: rgb(148,191,188);*/
+  background: rgb(197,12,60);
 }
+
+.modalButtons button:hover {
+  width: 250px;
+  background: rgb(114,144,146);
+  /*background: rgb(197,12,60);*/
+}
+
+
 
 .hidden {
   display: none;

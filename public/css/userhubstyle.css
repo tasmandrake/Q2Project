@@ -11,14 +11,23 @@
 }
 
 #myvids{
-  /*background-image: url('../images/brown_paper_slip.jpg');*/
-  /*margin-right: 5px;*/
-  /*opacity: 0.9;*/
+  background-image: url('../images/brownpaper.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  font-family: Georgia;
+  padding-bottom: 7%;
+  padding-top: 5%;
 }
 
 #sharedvids{
-  margin-left: 5px;
-  /*opacity: 0.9;*/
+  background-image: url('../images/brownpaper.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  font-family: Georgia;
+  padding-bottom: 7%;
+  padding-top: 5%;
 }
 
 .background {
@@ -39,18 +48,7 @@ a:hover{
 }
 
 .col-xs-4 {
-  background-image: url('../images/brownpaper.png');
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  /*background-image: image();*/
-  /*background-size: cover;*/
-  /*background-color: rgb(196,151,93);*/
-  /*border-radius: 10px;*/
-  /*box-shadow: 2px 2px 2px black;*/
-  font-family: Georgia;
-  padding-bottom: 75px;
-  padding-top: 50px;
+
 }
 
 #resultspg {
@@ -62,7 +60,7 @@ a:hover{
   opacity: 0.9;
   box-shadow: 2px 2px 2px black;
   font-family: Georgia;
-
+  padding: 2%;
 }
 
 #search {

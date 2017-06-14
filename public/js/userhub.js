@@ -42,7 +42,7 @@ $( document ).ready(function() {
       'data-noteid': id,
       'data-videoUrl': videoUrl
     });
-    $panelImg.attr('src', img)
+    $panelImg.attr('src', img);
     $panelHead.text(panelTitle);
     $panelBody.text(description);
 
@@ -136,6 +136,6 @@ $( document ).ready(function() {
         .done(() => {
           window.location.href = '/index.html';
         });
-    })
+    });
   }
 });
