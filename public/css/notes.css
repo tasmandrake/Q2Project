@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Special+Elite');
+
 .navbar-default {
    background-color: rgb(225,225,210);
    border-color: black;
@@ -12,4 +14,28 @@
 
 #middle {
   background-color: white;
+}
+
+#myvids{
+  background-image: url('../images/brownpaper.png');
+  background-position: center;
+  background-size: 400px 150px;
+  background-repeat: no-repeat;
+  font-family: Special Elite;
+  padding-bottom: 6%;
+  padding-top: 5%;
+}
+#labels {
+  background-image: url('../images/tornpaper2w-shad.png');
+  background-position: center;
+  background-size: 300px 75px;
+  background-repeat: no-repeat;
+  font-family: Special Elite;
+  padding-bottom: 1%;
+  padding-top: 2%;
+  text-align: center;
+}
+
+#flexbox {
+  padding-top: 2%;
 }

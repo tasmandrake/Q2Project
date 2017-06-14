@@ -120,7 +120,7 @@ $( document ).ready(function() {
     }
   });//end submit
 
-  $('#myvids').click(function(e){
+  $('#myvidsrow').click(function(e){
     let element = $(e.target).closest('.panel');
     let vidId = element.data('videourl');
     let noteId =  element.data('noteid');
