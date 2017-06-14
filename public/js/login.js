@@ -1,6 +1,4 @@
-'use strict';
-
-(() => {
+$(document).ready(() => {
   hideLogIn();
   hideAcc();
   hideOAuth();
@@ -12,10 +10,7 @@
       event.preventDefault();
       const email = $('#username').val();
       const password = $('#password').val();
-      const data = {
-        email: email,
-        password: password
-      };
+      const data = { email, password };
       const options = {
         contentType: 'application/json',
         data: JSON.stringify(data),
@@ -30,7 +25,7 @@
         return toasts('Please enter your password');
       }
       $.ajax(options)
-        .done((jsonData) => {
+        .done(() => {
           window.location.href = '/userhub.html';
         })
         .fail(($xhr) => {
@@ -48,11 +43,11 @@
       const last_name = $('#last_name').val();
       const username = $('#newUsername').val();
       const data = {
-        first_name: first_name,
-        last_name: last_name,
-        email: email,
-        username: username,
-        password: password
+        first_name,
+        last_name,
+        email,
+        username,
+        password
       };
       const options = {
         contentType: 'application/json',
@@ -74,12 +69,12 @@
         return toasts('Please enter a username');
       }
       $.ajax(options)
-        .done((jsonData) => {
+        .done(() => {
           window.location.href = '/userhub.html';
         })
         .fail(($xhr) => {
           return toasts($xhr.responseText);
-        })
+        });
     });
   }
 
@@ -118,4 +113,4 @@
       $('#info').toggleClass('hidden');
     });
   }
-})();
+});

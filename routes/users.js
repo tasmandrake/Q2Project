@@ -99,7 +99,6 @@ router.patch('/users', (req, res, next) => {
       'username'
     ])
     .then((updateUser) => {
-      // refresh
       res.send(updateUser);
     })
     .catch((error) => {
@@ -130,8 +129,6 @@ router.delete('/users', (req, res, next) => {
           .set({ 'Content-Type': 'plain/text' })
           .send('User not found');
       }
-      // I think this is how redirect works but I haven't tried it yet, need basic framework to try it
-      // res.redirect('../public/index.html');
       res.clearCookie('token').send(deletedUser);
     })
     .catch((error) => {

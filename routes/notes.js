@@ -60,10 +60,7 @@ router.post('/notes', (req, res, next) => {
       video_id: videoId
     })
     .returning('*')
-    .then((newNote) => {
-      // res.sendStatus(200) or res.redirect()
-      res.send(newNote);
-    })
+    .then((newNote) => res.send(newNote))
     .catch(error => console.error(error));
 });
 
@@ -82,10 +79,7 @@ router.patch('/notes/:id', (req, res, next) => {
     .where('user_id', userId)
     .where('id', noteId)
     .returning('*')
-    .then((updatedNote) => {
-      // res.sendStatus(200) or res.redirect()
-      res.send(updatedNote);
-    })
+    .then((updatedNote) => res.send(updatedNote))
     .catch(error => console.error(error));
 });
 
@@ -105,7 +99,6 @@ router.delete('/notes/:id', (req, res, next) => {
           .send('Not Found');
       }
       res.send(deletedNote);
-      // res.redirect('../public/index.html');
     })
     .catch(error => console.error(error));
 });
