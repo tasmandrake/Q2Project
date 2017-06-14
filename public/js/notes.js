@@ -26,20 +26,14 @@ $(document).ready(() => {
           type: 'GET',
           url: '/videos/url?vidurl=' + query.id
         };
-        console.log(videoOptions);
         $.ajax(videoOptions).done((data) => {
-          const noteId = data[0].notesId;
-          // if (noteId) {
-          // console.log(data);
-          // }
-          if (!true) {
-            console.log('here');
+          if (data[0].note_file) {
             $('.cke_wysiwyg_frame')
               .contents()
               .children()
               .children('body')
               .html(data[0].note_file);
-            $('#right').attr('data-noteid', noteId);
+            $('#right').attr('data-noteid', data[0].notesId);
           } else {
             const noteData = {
               video_id: data[0].vidId,
@@ -91,7 +85,6 @@ $(document).ready(() => {
               type: 'PATCH',
               url: '/notes/' + $('#right').data('noteid')
             };
-            console.log(notesOptions);
             $.ajax(notesOptions)
               .done()
               .catch(error => console.error(error));
