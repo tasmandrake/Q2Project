@@ -24,7 +24,7 @@ router.get('/notes', (req, res, next) => {
 router.get('/notes/:id', (req, res, next) => {
   const id = req.params.id;
   const userId = req.user.id;
-
+  console.log(req.body);
   // do we want to join with videos to get all info needed? for note taking page?
   knex('notes')
     .select('*')
@@ -54,7 +54,6 @@ router.post('/notes', (req, res, next) => {
 
   knex('notes')
     .insert({
-      title: body.title,
       note_file: body.note_file,
       user_id: userId,
       video_id: videoId
