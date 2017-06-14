@@ -41,7 +41,7 @@ $( document ).ready(function() {
     $panel.attr({
       'data-noteid': id,
       'data-videoUrl': videoUrl,
-      'data-description': btoa(description)
+      'data-description': (description)
     });
     $panelImg.attr('src', img)
     $panelHead.text(panelTitle);

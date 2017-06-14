@@ -54,7 +54,6 @@ router.post('/notes', (req, res, next) => {
 
   knex('notes')
     .insert({
-      title: body.title,
       note_file: body.note_file,
       user_id: userId,
       video_id: videoId
