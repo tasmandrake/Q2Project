@@ -150,21 +150,63 @@
       return hardTag
     }
     x().then((done)=>{
-      let data;
+      queryTwo ={}
+      window.location.href.split('?')[1]
+        .split('&')
+        .map(e => {
+          let kv = e.split('=');
+          queryTwo[kv[0]] = kv[1];
+        });
       let options = {
         contentType: 'application/json',
-        data: JSON.stringify(data),
-        dataType: 'json',
-        type: 'POST',
-        url: '/notes'
+        type: 'GET',
+        url:'/videos/url?vidurl=' + queryTwo.id
       }
+      $.ajax(options).done((data)=>{
+        //console.log(data[0].id)
+
+        let noteData = {
+          title: 'crap',
+          video_id: data[0].id,
+          note_file: $('.cke_wysiwyg_frame').contents().children().children('body').html()
+        }
+        console.log($('.cke_wysiwyg_frame').contents().children().children('body').html());
+        let input = {
+          contentType: 'application/json',
+          data: JSON.stringify(noteData),
+          dataType: 'json',
+          type: 'POST',
+          url: '/notes'
+        }
+        console.log(noteData)
+        $.ajax(input).done((returning)=>{
+          $('#right').attr('data-noteid', returning[0].id);
+        }).catch((error)=>{
+          console.log(error)
+        })
+
+      })
       done.keydown((e)=>{
         if(e.which === 13){
-          console.log(e.target)
           let time = player.getCurrentTime();
           $($('.cke_wysiwyg_frame').contents().children().children('body').children()[index]).attr('data-time', time)
-          console.log($('.cke_wysiwyg_frame').contents().children().children('body').children()[index]);
           index++;
+
+          let data = {
+            note_file: $('.cke_wysiwyg_frame').contents().children().children('body').html()
+          }
+
+          let options = {
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            type: 'PATCH',
+            url: '/notes/' + $('#right').data('noteid')
+          }
+          $.ajax(options).done().catch((error)=>{
+            console.log(error)
+          })
+
         };
       })
       done.click((e)=>{
