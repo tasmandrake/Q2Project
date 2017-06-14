@@ -14,7 +14,7 @@
 
 #info {
   width: 600px;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.75);
   padding: 30px;
   border-radius: 10px;
 }
@@ -38,6 +38,29 @@ form {
   width: 250px;
   background: rgb(114,144,146);
   /*background: rgb(197,12,60);*/
+}
+
+.modalButtons button:focus, button:active {
+  /*width: 250px;*/
+  background-color: rgb(197,12,60) !important;
+}
+
+hr {
+    border-top: 1px solid #8c8b8b;
+    text-align: center;
+}
+hr:after {
+    content: '§';
+    display: inline-block;
+    position: relative;
+    top: -14px;
+    padding: 0 10px;
+    /*background: #f0f0f0;*/
+    color: #8c8b8b;
+    font-size: 18px;
+    -webkit-transform: rotate(60deg);
+    -moz-transform: rotate(60deg);
+    transform: rotate(60deg);
 }
 
 

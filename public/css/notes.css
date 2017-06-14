@@ -26,12 +26,12 @@
   padding-top: 5%;
 }
 #labels {
-  background-image: url('../images/tornpaper2w-shad.png');
+  background-image: url('../images/tornpaper-notape1.png');
   background-position: center;
   background-size: 300px 75px;
   background-repeat: no-repeat;
   font-family: Special Elite;
-  padding-bottom: 1%;
+  padding-bottom: 0%;
   padding-top: 2%;
   text-align: center;
 }

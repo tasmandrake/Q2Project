@@ -41,7 +41,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand">Jump Note</a>
+      <a class="navbar-brand">JumpNote</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -67,6 +67,7 @@
     </div>
   </div>
 
+<<<<<<< HEAD
   <div class = "col-xs-12" id="flexbox">
     <div class = "col-xs-6" id="left">
       <div id="player">
@@ -138,6 +139,47 @@
         function stopVideo() {
           player.stopVideo();
         }
+=======
+    <div id="left">
+      <div id="player"></div>
+
+      <script type="text/javascript">
+      const query = {};
+      window.location.href.split('?')[1]
+        .split('&')
+        .map((e) => {
+          const kv = e.split('=');
+          query[kv[0]] = kv[1];
+        });
+
+      // 2. This code loads the IFrame Player API code asynchronously.
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      const firstScriptTag = document.getElementsByTagName('script')[2];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      let player;
+
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: query.id,
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      function onPlayerReady(event) {}
+      function onPlayerStateChange(event) {}
+      function stopVideo() {
+        player.stopVideo();
+      }
+>>>>>>> c37892cf49020602b4869a8055be4dc9839c4aea
       </script>
     </div>
 
@@ -146,6 +188,7 @@
     </div>
   </div>
 
+<<<<<<< HEAD
 <div class ="bottom col-xs-12">
   <div id="myvids" class="col-xs-6">
     <h3 class="text-center">My Videos</h3>
@@ -156,45 +199,12 @@
 
   <script>
     var index = 0;
+=======
+  <script type="text/javascript">
+>>>>>>> c37892cf49020602b4869a8055be4dc9839c4aea
     initSample();
-    function x(){
-      var hardTag = new Promise((resolve, reject)=>{
-        window.setTimeout(()=>{
-          resolve($('.cke_wysiwyg_frame').contents().children().children('body'))
-        },1000)
-      })
-      return hardTag
-    }
-    x().then((done)=>{
-      let data;
-      let options = {
-        contentType: 'application/json',
-        data: JSON.stringify(data),
-        dataType: 'json',
-        type: 'POST',
-        url: '/notes'
-      }
-      done.keydown((e)=>{
-        if(e.which === 13){
-          console.log(e.target)
-          let time = player.getCurrentTime();
-          $($('.cke_wysiwyg_frame').contents().children().children('body').children()[index]).attr('data-time', time)
-          console.log($('.cke_wysiwyg_frame').contents().children().children('body').children()[index]);
-          index++;
-        };
-      })
-      done.click((e)=>{
-        var $tag = $(e.target).attr('data-time');
-        var time = Math.round($tag);
-        if(time){
-          player.seekTo(time, true).playVideo()
-        }
-      })
-    })
-
   </script>
   <script type="text/javascript" src="./js/notes.js">
-
   </script>
 </body>
 
