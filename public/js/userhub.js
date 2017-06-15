@@ -32,7 +32,7 @@ $(document).ready(() => {
     });
 
     $panelImg.attr('src', img);
-    $panelHead.text(panelTitle);
+    $panelHead.text(videoTitle);
     $panelBody.text(description);
 
     // appending
