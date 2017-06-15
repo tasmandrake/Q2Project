@@ -32,86 +32,97 @@
 <body class="background">
 
   <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../public/index.html">Jump Note</a>
+        <a class="navbar-brand">JumpNote</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="about.html">About</a></li>
+          <li><a href="userhub.html">Profile</a></li>
+          <li class="active"><a href="#">Notes<span class="sr-only">(current)</span></a></li>
+          <li><a href="index.html" id="logout">Sign out</a></li>
+        </ul>
+        <form class="navbar-form navbar-left">
+        </form>
+      </div>
+      <!-- /.navbar-collapse -->
     </div>
+    <!-- /.container-fluid -->
+  </nav>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="about.html">About</a></li>
-        <li><a href="userhub.html">Profile</a></li>
-        <li class="active"><a href="#">Notes<span class="sr-only">(current)</span></a></li>
-        <li><a href="index.html" id="logout">Sign out</a></li>
-      </ul>
-      <form class="navbar-form navbar-left">
-      </form>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-  <div id="flexbox">
-
-    <div id="left">
-      <div id="player"></div>
-
-      <script type="text/javascript">
-      const query = {};
-      window.location.href.split('?')[1]
-        .split('&')
-        .map((e) => {
-          const kv = e.split('=');
-          query[kv[0]] = kv[1];
-        });
-
-      // 2. This code loads the IFrame Player API code asynchronously.
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      const firstScriptTag = document.getElementsByTagName('script')[2];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      let player;
-
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          height: '390',
-          width: '640',
-          videoId: query.id,
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-      }
-
-      function onPlayerReady(event) {}
-      function onPlayerStateChange(event) {}
-      function stopVideo() {
-        player.stopVideo();
-      }
-      </script>
+  <div class="col-xs-12">
+    <div class="col-xs-6" id="labels">
+      <h3>Video</h3>
     </div>
-
-    <div id="right">
-      <div id="editor"></div>
+    <div class="col-xs-6" id="labels">
+      <h3>Notes</h3>
     </div>
   </div>
 
+  <div class="col-xs-12" id="flexbox">
+    <div class="col-xs-6" id="left">
+      <div id="player"></div>
+
+      <script type="text/javascript">
+        const query = {};
+        window.location.href.split('?')[1]
+          .split('&')
+          .map((e) => {
+            const kv = e.split('=');
+            query[kv[0]] = kv[1];
+          });
+
+        // 2. This code loads the IFrame Player API code asynchronously.
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[2];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // 3. This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        let player;
+
+        function onYouTubeIframeAPIReady() {
+          player = new YT.Player('player', {
+            height: '390',
+            width: '640',
+            videoId: query.id,
+            events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange
+            }
+          });
+        }
+
+        function onPlayerReady(event) {}
+
+        function onPlayerStateChange(event) {}
+
+        function stopVideo() {
+          player.stopVideo();
+        }
+      </script>
+    </div>
+    <div class="col-xs-6" id="right">
+      <div id="editor"></div>
+    </div>
+  </div>
   <script type="text/javascript">
     initSample();
   </script>
   <script type="text/javascript" src="./js/notes.js">
   </script>
+
 </body>
 
 </html>

@@ -13,35 +13,43 @@
 }
 
 #spacetop {
-  padding-top: 150px;
-  /*padding-bottom: 250px;*/
+  padding-top: 10%;
 }
 
 #spacebottom {
-  padding-bottom: 325px;
+  padding-bottom: 20%;
 }
 
 .panel {
   background: none;
   border: none;
+}
 
+.panel-body {
+  padding-bottom: 110px;
+}
+
+.heading {
+  text-align: center;
+}
+
+.col-xs-12 {
+  height: 400px !important;
+}
+
+.col-xs-6 {
+  top: 110px !important;
 }
 
 #about {
   background-image: url('../images/tornpaper.png');
-  background-position: center;
-  background-size: 910px 400px;
+  background-position: top;
+  background-size: 75% 100%;
   background-repeat: no-repeat;
   font-family: Special Elite;
-  /*padding-bottom: 100px;
-  padding-top: 100px;
-  padding-left: 50px;
-  padding-right: 50px;*/
-  padding: 100px;
-  /*opacity: 1;*/
-  /*background-color: rgb(220,212,175);*/
+  position: relative;
+  margin-bottom: 50px;
 }
-
 
 .prolinks {
   padding-left: 10px;
@@ -52,8 +60,7 @@
   background-color: white;
   opacity: 0.9;
   border: black;
-  box-shadow: 6px 6px 6px gray;
-
+  box-shadow: 3px 3px 3px black;
 }
 
 .aboutpic {

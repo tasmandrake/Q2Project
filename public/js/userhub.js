@@ -102,9 +102,10 @@ $(document).ready(() => {
         console.error(err);
       });
     }
-  });
 
-  $('#myvids').click((e) => {
+  });// end submit
+
+  $('#myvidsrow').click((e) => {
     const element = $(e.target).closest('.panel');
     const vidId = element.data('videourl');
     const noteId = element.data('noteid');
