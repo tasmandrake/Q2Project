@@ -12,7 +12,6 @@ html {
 
 .background {
   background-image: url('../images/notebook_clock.jpg');
-  /*background-repeat: no-repeat;*/
   background-size: cover;
 }
 
@@ -20,13 +19,8 @@ html {
   height: 60vh;
 }
 
-/*#right {
-  height: 100vh;
-}*/
-
 #magic {
   display: none;
-  /*width: 10vw;*/
 }
 
 #middle {

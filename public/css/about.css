@@ -8,7 +8,6 @@
 
 .background {
   background-image: url('../images/vintage_notebook.jpg');
-  /*background-repeat: no-repeat;*/
   background-size: cover;
 }
 
@@ -62,7 +61,6 @@
 
 .box {
     background-color: rgba(255, 255, 255, .9);
-    /*opacity: 0.9;*/
     border: black;
     box-shadow: 4px 4px 4px #61605f;
 }
