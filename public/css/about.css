@@ -14,7 +14,6 @@
 
 #spacetop {
   padding-top: 10%;
-  /*padding-bottom: 250px;*/
 }
 
 #spacebottom {
@@ -27,19 +26,11 @@
 }
 
 .panel-body {
-  /*padding: 0px;*/
   padding-bottom: 110px;
-  /*position: absolute;*/
 }
 
 .heading {
   text-align: center;
-}
-
-#aboutsection {
-  /*position: relative;
-  top: 0;
-  left: 0;*/
 }
 
 .col-xs-12 {
@@ -58,16 +49,7 @@
   font-family: Special Elite;
   position: relative;
   margin-bottom: 50px;
-  /*padding-bottom: 100px;
-  /*padding-top: 100px;*/
-  /*padding-left: 50px;
-  padding-right: 50px;*/
-  /*padding: 100px;*/
-  /*opacity: 1;*/
-  /*background-color: rgb(220,212,175);*/
-  /*background-attachment: fixed;*/
 }
-
 
 .prolinks {
   padding-left: 10px;
@@ -79,7 +61,6 @@
   opacity: 0.9;
   border: black;
   box-shadow: 3px 3px 3px black;
-
 }
 
 .aboutpic {

@@ -8,14 +8,6 @@ const knex = require('../knex');
 const saltRounds = 10;
 const secret = process.env.SECRET;
 
-router.get('/users', (req, res, next) => {
-  // do we need gets for users?
-});
-
-router.get('/users/:id', (req, res, next) => {
-  // do we need gets for users?
-});
-
 router.post('/users', (req, res, next) => {
   const body = req.body;
   if (!body.first_name) {
@@ -99,7 +91,6 @@ router.patch('/users', (req, res, next) => {
       'username'
     ])
     .then((updateUser) => {
-      // refresh
       res.send(updateUser);
     })
     .catch((error) => {
@@ -130,8 +121,6 @@ router.delete('/users', (req, res, next) => {
           .set({ 'Content-Type': 'plain/text' })
           .send('User not found');
       }
-      // I think this is how redirect works but I haven't tried it yet, need basic framework to try it
-      // res.redirect('../public/index.html');
       res.clearCookie('token').send(deletedUser);
     })
     .catch((error) => {

@@ -12,7 +12,7 @@ function checkToken() {
         window.location.href = '/index.html';
       }
     })
-    .fail(($xhr) => {
+    .fail(() => {
       window.location.href = '/index.html';
     });
 }

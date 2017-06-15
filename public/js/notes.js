@@ -27,7 +27,7 @@ $(document).ready(() => {
           url: '/videos/url?vidurl=' + query.id
         };
         $.ajax(videoOptions).done((data) => {
-          if (data[0].notesId) {
+          if (data[0].note_file) {
             $('.cke_wysiwyg_frame')
               .contents()
               .children()
@@ -98,15 +98,15 @@ $(document).ready(() => {
         };
 
         $.ajax(getOptions).done((data) => {
-            const noteData = data[0].note_file;
+          const noteData = data[0].note_file;
 
-            $('.cke_wysiwyg_frame')
+          $('.cke_wysiwyg_frame')
               .contents()
               .children()
               .children('body')
               .html(noteData);
-          })
-          .catch(err => console.log(err));
+        })
+        .catch(err => console.error(err));
 
         done.keydown((e) => {
           if (e.which === 13) {
@@ -142,7 +142,6 @@ $(document).ready(() => {
         done.keydown((e) => {
           if (e.which === 13) {
             const time = player.getCurrentTime();
-            console.log(time);
             $($('.cke_wysiwyg_frame')
                 .contents()
                 .children()
@@ -196,25 +195,3 @@ $(document).ready(() => {
     });
   }
 });
-
-
-/*
-if (query.noteId) {
-  const getOptions = {
-    contentType: 'application/json',
-    type: 'GET',
-    url: '/notes/' + query.noteId
-  };
-  console.log(getOptions.url);
-  $.ajax(getOptions).done((data) => {
-    const noteData = data.note_file;
-    $('.cke_wysiwyg_frame')
-      .contents()
-      .children()
-      .children('body')
-      .html(noteData);
-  }).catch(err => console.log(err));
-}
-
-
-*/

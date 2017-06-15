@@ -7,9 +7,7 @@
 }
 
 #myvids, #sharedvids, #results{
-  /*border: 1px solid black;*/
   margin: 10px;
-  /*background-image: url('../images/brown_paper_slip.jpg');*/
 }
 
 #myvids{
@@ -38,7 +36,6 @@ h3 {
 
 .background {
   background-image: url('../images/notesplash2.jpg');
-  /*background-repeat: no-repeat;*/
   background-size: 100vw;
   background-position: top;
 
@@ -52,11 +49,6 @@ a:hover{
 }
 .urlContainer{
   display: none;
-
-}
-
-.col-xs-4 {
-
 }
 
 #resultspg {
@@ -75,7 +67,6 @@ a:hover{
 }
 
 .btn {
-  /*padding: 10px;*/
   padding-top: 15px;
   border-radius: 10px;
   background: rgb(220,212,175);
@@ -89,5 +80,4 @@ a:hover{
   background: rgb(90,130,118);
   color: white;
   border-color: black;
-  /*background: rgb(120,150,141);*/
 }
