@@ -9,7 +9,7 @@ $(document).ready(() => {
   function login() {
     $('#userLogin').click((event) => {
       event.preventDefault();
-      const email = $('#username').val();
+      const email = $('#email').val();
       const password = $('#password').val();
       const data = { email, password };
       const options = {
@@ -38,7 +38,7 @@ $(document).ready(() => {
   function newUser() {
     $('#newAccount').click((event) => {
       event.preventDefault();
-      const email = $('#newUsername').val();
+      const email = $('#newEmail').val();
       const password = $('#newPassword').val();
       const first_name = $('#first_name').val();
       const last_name = $('#last_name').val();
