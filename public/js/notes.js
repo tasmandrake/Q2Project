@@ -59,10 +59,8 @@ $(document).ready(() => {
         });
         done.keydown((e) => {
           if (e.which === 13) {
-            let time = player.getCurrentTime();
-            if (query.live === 'true') {
-              time = player.getDuration();
-            }
+            const time = player.getCurrentTime();
+
             $($('.cke_wysiwyg_frame')
                 .contents()
                 .children()
