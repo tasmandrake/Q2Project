@@ -4,6 +4,8 @@ $(document).ready(() => {
   login();
   newUser();
 
+  $('a').tooltip();
+
   function login() {
     $('#userLogin').click((event) => {
       event.preventDefault();
@@ -61,7 +63,7 @@ $(document).ready(() => {
       } else if (!password) {
         return toasts('Please enter a password');
       } else if (!first_name) {
-        return toasts('Please enter a first name');
+        return toasts('Please enter your first name');
       } else if (!last_name) {
         return toasts('Please enter your last name');
       } else if (!username) {
