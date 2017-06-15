@@ -38,15 +38,16 @@ h3 {
   background-image: url('../images/notesplash2.jpg');
   background-size: 100vw;
   background-position: top;
-
 }
 
 a{
   text-decoration: none;
 }
+
 a:hover{
   text-decoration: none;
 }
+
 .urlContainer{
   display: none;
 }

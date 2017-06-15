@@ -18,6 +18,7 @@
   padding: 30px;
   border-radius: 10px;
 }
+
 .modal-dialog {
   height: 100vh;
   display: flex;
@@ -25,9 +26,11 @@
   align-items: center;
   min-height: 500px;
 }
+
 form {
   width: 600px;
 }
+
 .modalButtons button {
   width: 200px;
   background: rgb(197,12,60);
@@ -39,28 +42,51 @@ form {
 }
 
 .modalButtons button:focus, button:active {
-  background-color: rgb(197,12,60) !important;
+  background-color: rgb(114,144,146) !important;
+}
+
+#userLogin{
+  background-color: rgb(197,12,60);
+  color: white;
+  background-image: none;
+  letter-spacing: 0.1em;
+  font-family: times;
+}
+
+#userLogin:hover{
+  background-color: rgb(114,144,146);
+  color: white;
+  background-image: none;
+}
+
+.btn-default {
+  background-color: rgb(197,12,60);
+  color: black;
+}
+
+.btn-default:hover {
+  background-color: rgb(114,144,146);
+  color: black;
+  background-position: 0 0px;
 }
 
 hr {
     border-top: 1px solid #8c8b8b;
     text-align: center;
 }
+
 hr:after {
     content: '§';
     display: inline-block;
     position: relative;
     top: -14px;
     padding: 0 10px;
-    /*color: #8c8b8b;*/
     color: black;
     font-size: 18px;
     -webkit-transform: rotate(60deg);
     -moz-transform: rotate(60deg);
     transform: rotate(60deg);
 }
-
-
 
 .hidden {
   display: none;
