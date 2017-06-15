@@ -30,6 +30,7 @@ $(document).ready(() => {
       'data-videoUrl': videoUrl,
       'data-description': (description)
     });
+    videoTitle = $.trim(videoTitle).substring(0, 25).split(" ").slice(0, 25).join(" ") + "...";
 
     $panelImg.attr('src', img);
     $panelHead.text(videoTitle);
@@ -44,16 +45,14 @@ $(document).ready(() => {
 
   function makeCard(title, img, id, description, live) {
     // elements
-    const $col = $("<div class=' col-xs-6'></div>");
+    // const $col = $("<div class=' col-xs-6'></div>");
     const $panel = $("<div class='panel panel-default'></div>");
-    const $panelHead = $("<div class='panel-heading'>");
+    const $panelHead = $("<div class='panel-heading pHead text-center'>");
     const $panelBody = $("<div class='panel-body'>");
     const $panelRow = $('#panelRow');
-    const $panelImg = $("<img class = 'img-responsive center-block'>");
-    const $hidden = $("<div class='urlContainer'></div");
+    const $panelImg = $("<img class = 'img-responsive center-block panelImg'>");
 
     // appending the panels
-    $hidden.text(id);
     $panel.append($panelHead);
     $panel.attr({
       'data-id': id,
@@ -62,14 +61,13 @@ $(document).ready(() => {
       'data-img': img,
       'data-title': title
     });
-
+    title = $.trim(title).substring(0, 25).split(" ").slice(0, 25).join(" ") + "...";
     $panelHead.text(title);
     $panelBody.append($panelImg);
-    $panelBody.append($hidden);
     $panel.append($panelBody);
     $panelImg.attr('src', img);
-    $col.append($panel);
-    $panelRow.append($col);
+    $panelRow.append($panel);
+
   }
 
   $('form').submit((event) => {

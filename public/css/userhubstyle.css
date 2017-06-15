@@ -109,10 +109,11 @@ a:hover{
 
 .panel-default{
   max-width: 322px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 2%;
+  margin-right: 2%;
   border: 0;
   box-shadow: 5px 5px 5px rgba(0,0,0,.6);
+  display:inline-block;
 }
 
 .descript{
@@ -125,4 +126,5 @@ a:hover{
 .panelImg{
   /*border: 1px solid black;*/
   width:322px;
+  max-height: 181.13px;
 }
