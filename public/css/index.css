@@ -52,7 +52,8 @@ hr:after {
     position: relative;
     top: -14px;
     padding: 0 10px;
-    color: #8c8b8b;
+    /*color: #8c8b8b;*/
+    color: black;
     font-size: 18px;
     -webkit-transform: rotate(60deg);
     -moz-transform: rotate(60deg);
