@@ -1,7 +1,6 @@
 $(document).ready(() => {
   hideLogIn();
   hideAcc();
-  hideOAuth();
   login();
   newUser();
 
@@ -101,15 +100,6 @@ $(document).ready(() => {
       $('#info').toggleClass('hidden');
     });
     $('#newUser').on('hide.bs.modal', () => {
-      $('#info').toggleClass('hidden');
-    });
-  }
-
-  function hideOAuth() {
-    $('#oAuth').click(() => {
-      $('#info').toggleClass('hidden');
-    });
-    $('#oauth').on('hide.bs.modal', () => {
       $('#info').toggleClass('hidden');
     });
   }

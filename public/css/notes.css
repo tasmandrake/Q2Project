@@ -65,6 +65,7 @@ html {
 }
 
 #player {
+  /*height: 60vh;*/
   height: 100%;
   width: 100%;
 }
