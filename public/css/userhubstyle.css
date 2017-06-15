@@ -7,13 +7,13 @@
 }
 
 #myvids, #sharedvids, #results{
-  margin: 10px;
+  /*margin: 10px;*/
 }
 
 #myvids{
   background-image: url('../images/brownpaper.png');
   background-position: center;
-  background-size: contain;
+  background-size:70%;
   background-repeat: no-repeat;
   font-family: Special Elite;
   padding-bottom: 7%;
@@ -27,7 +27,7 @@ h3 {
 #sharedvids{
   background-image: url('../images/brownpaper.png');
   background-position: center;
-  background-size: contain;
+  background-size: 70%;
   background-repeat: no-repeat;
   font-family: Special Elite;
   padding-bottom: 7%;
@@ -80,4 +80,49 @@ a:hover{
   background: rgb(90,130,118);
   color: white;
   border-color: black;
+}
+
+/*Sean's Style Edits*/
+.panel-heading.pHead{
+  background-image: none;
+  background-repeat: no-repeat;
+  background-color: rgb(90,130,118);
+  color: white;
+  font-size: 15px;
+  font-style: bold;
+  font-family: Special Elite;
+  text-transform: uppercase;
+  border:0;
+}
+
+.panel-body{
+  background-image: none;
+  background-color: white;
+  padding-left:0;
+  padding-right:0;
+  padding-top:0;
+  padding-bottom:0;
+  /*border:1px solid black;*/
+  margin-left:0;
+  margin-right:0;
+}
+
+.panel-default{
+  max-width: 322px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0;
+  box-shadow: 5px 5px 5px rgba(0,0,0,.6);
+}
+
+.descript{
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: justify;
+}
+
+.panelImg{
+  /*border: 1px solid black;*/
+  width:322px;
 }

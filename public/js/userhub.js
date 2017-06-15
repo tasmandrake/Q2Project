@@ -38,9 +38,10 @@ $(document).ready(() => {
     .fail($xhr => console.error($xhr));
   function makeNoteCards(id, panelTitle, img, description, videoTitle, videoUrl, $row) {
     const $panel = $("<div class='panel panel-default'></div>");
-    const $panelHead = $("<div class='panel-heading'>");
+    const $panelHead = $("<div class='panel-heading pHead text-center'>");
     const $panelBody = $("<div class='panel-body'>");
-    const $panelImg = $("<img class = 'img-responsive center-block'>");
+    const $panelImg = $("<img class = 'img-responsive center-block panelImg'>");
+    const $panelDes = $("<p class='descript'></p>")
 
     // text
     $panel.attr({
@@ -51,7 +52,7 @@ $(document).ready(() => {
 
     $panelImg.attr('src', img);
     $panelHead.text(videoTitle);
-    $panelBody.text(description);
+    $panelDes.text(description);
 
     // appending
     $panel.append($panelHead);
@@ -95,9 +96,10 @@ $(document).ready(() => {
     event.preventDefault();
     const text = $('#search').val().replace(' ', '+');
     if (text.length > 0) {
-      const $xhr = $.getJSON('https://www.googleapis.com/youtube/v3/search/?part=snippet&q=' + text + '&maxResults=10&key=AIzaSyC0b4jxH6E1DbtJm3S_ZOZx5ahcOmthPDk');
+      const $xhr = $.getJSON('https://www.googleapis.com/youtube/v3/search/?part=snippet&q=' + text + '&maxResults=12&key=AIzaSyC0b4jxH6E1DbtJm3S_ZOZx5ahcOmthPDk');
       $xhr.done((data) => {
         const vids = data.items;
+        console.log(vids);
         if ($xhr.status !== 200) {
           return;
         } else {
