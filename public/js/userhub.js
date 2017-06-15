@@ -72,7 +72,6 @@ $(document).ready(() => {
     $panel.append($panelBody);
     $panelBody.prepend($panelImg);
     $row.append($panel);
-    $myVidsRow.append($panel);
     $('[data-toggle="tooltip"]').tooltip()
   }
 
