@@ -112,6 +112,7 @@ $(document).ready(() => {
         done.keydown((e) => {
           if (e.which === 13) {
             const time = player.getCurrentTime();
+            console.log(time);
             $($('.cke_wysiwyg_frame')
                 .contents()
                 .children()
@@ -230,4 +231,21 @@ $(document).ready(() => {
         });
     });
   }
+
+  $(window).on('load', function(){
+    var viewportWidth = $(window).width();
+    if (viewportWidth < 1199){
+      $("#left").addClass("col-xs-offset-1");
+    }
+  });
+
+  $(window).resize(function(){
+    var viewportWidth = $(window).width();
+    if (viewportWidth < 1199){
+      $("#left").addClass("col-xs-offset-1");
+    } else if (viewportWidth > 1199){
+      $("#left").removeClass("col-xs-offset-1");
+    }
+  });
+
 });

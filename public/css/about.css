@@ -8,7 +8,7 @@
 
 .background {
   background-image: url('../images/vintage_notebook.jpg');
-  background-repeat: no-repeat;
+  /*background-repeat: no-repeat;*/
   background-size: cover;
 }
 
@@ -56,14 +56,19 @@
   padding-right: 10px;
 }
 
-.box {
-  background-color: white;
-  opacity: 0.9;
+.caption {
   border: black;
-  box-shadow: 3px 3px 3px black;
+}
+
+.box {
+    background-color: rgba(255, 255, 255, .9);
+    /*opacity: 0.9;*/
+    border: black;
+    box-shadow: 4px 4px 4px #61605f;
 }
 
 .aboutpic {
+  box-shadow: 4px 4px 4px #61605f;
   height: 200px;
   width: 200px;
 }

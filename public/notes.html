@@ -60,66 +60,72 @@
     <!-- /.container-fluid -->
   </nav>
 
-  <div class="col-xs-12">
-    <div class="col-xs-6" id="labels">
-      <h3>Video</h3>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="col-xs-6" id="label1">
+          <h3>Video</h3>
+        </div>
+        <div class="col-xs-6" id="label2">
+          <h3>Notes</h3>
+        </div>
+      </div>
     </div>
-    <div class="col-xs-6" id="labels">
-      <h3>Notes</h3>
-    </div>
-  </div>
 
-  <div class="col-xs-12" id="flexbox">
-    <div class="col-xs-6" id="left">
-      <div id="player"></div>
+    <div class="row">
+      <div id="flexbox">
+        <div class="col-xs-12 col-lg-6" id="left">
+          <div class="center" id="magic"></div>
+          <div id="player"></div>
+          <script type="text/javascript">
+            const query = {};
+            window.location.href.split('?')[1]
+              .split('&')
+              .map((e) => {
+                const kv = e.split('=');
+                query[kv[0]] = kv[1];
+              });
 
-      <script type="text/javascript">
-        const query = {};
-        window.location.href.split('?')[1]
-          .split('&')
-          .map((e) => {
-            const kv = e.split('=');
-            query[kv[0]] = kv[1];
-          });
+            // 2. This code loads the IFrame Player API code asynchronously.
+            const tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            const firstScriptTag = document.getElementsByTagName('script')[2];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        // 2. This code loads the IFrame Player API code asynchronously.
-        const tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-        const firstScriptTag = document.getElementsByTagName('script')[2];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            // 3. This function creates an <iframe> (and YouTube player)
+            //    after the API code downloads.
+            let player;
 
-        // 3. This function creates an <iframe> (and YouTube player)
-        //    after the API code downloads.
-        let player;
-
-        function onYouTubeIframeAPIReady() {
-          player = new YT.Player('player', {
-            height: '390',
-            width: '640',
-            videoId: query.id,
-            events: {
-              'onReady': onPlayerReady,
-              'onStateChange': onPlayerStateChange
+            function onYouTubeIframeAPIReady() {
+              player = new YT.Player('player', {
+                // height: '450',
+                // width: '738',
+                videoId: query.id,
+                events: {
+                  'onReady': onPlayerReady,
+                  'onStateChange': onPlayerStateChange
+                }
+              });
             }
-          });
-        }
 
-        function onPlayerReady(event) {}
+            function onPlayerReady(event) {}
 
-        function onPlayerStateChange(event) {
-          console.log('changed')
+            function onPlayerStateChange(event) {
+              console.log('changed')
 
-          console.log(event.target.getCurrentTime())
-        }
+              console.log(event.target.getCurrentTime())
+            }
 
-        function stopVideo() {
-          player.stopVideo();
-        }
-      </script>
-    </div>
-    <div class="col-xs-6" id="right">
-      <button type="button" name="share" id="share">Share</button>
-      <div id="editor"></div>
+            function stopVideo() {
+              player.stopVideo();
+            }
+          </script>
+        </div>
+        <div class="col-xs-6" id="right">
+          <button type="button" name="share" id="share">Share</button>
+          <div id="editor"></div>
+        </div>
+      </div>
     </div>
   </div>
   <script type="text/javascript">
@@ -127,7 +133,6 @@
   </script>
   <script type="text/javascript" src="./js/notes.js">
   </script>
-
 </body>
 
 </html>
