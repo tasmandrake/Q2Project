@@ -112,6 +112,17 @@ a:hover{
   color: white;
 }
 
+.titlea+.tooltip>.tooltip-inner{
+  background-color: rgb(200, 223, 216);
+  color:black;
+  font-size: 12px;
+  font-family: Special Elite;
+}
+.titlea+.tooltip.top>.tooltip-arrow{
+
+  border-top-color: rgb(200, 223, 216);
+}
+
 
 .panel-body{
   background-image: none;
