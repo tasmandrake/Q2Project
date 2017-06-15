@@ -10,11 +10,21 @@ router.use((req, res, next) => {
   }
   res.sendStatus(401);
 });
-
 router.get('/notes', (req, res, next) => {
-  const userId = req.user.id;
+  let userId;
+  if (Number(req.headers.userid) === 0) {
+    userId = req.headers.userid;
+  } else {
+    userId = req.user.id;
+  }
   knex('notes')
-    .select('notes.id', 'video_url', 'img', 'videos.title AS video_title', 'description')
+    .select(
+      'notes.id',
+      'video_url',
+      'img',
+      'videos.title AS video_title',
+      'description'
+    )
     .where('user_id', userId)
     .innerJoin('videos', 'videos.id', 'notes.video_id')
   .then(notes => res.send(notes))
@@ -23,7 +33,12 @@ router.get('/notes', (req, res, next) => {
 
 router.get('/notes/:id', (req, res, next) => {
   const id = req.params.id;
-  const userId = req.user.id;
+  let userId;
+  if (Number(req.headers.userid) === 0) {
+    userId = req.headers.userid;
+  } else {
+    userId = req.user.id;
+  }
   knex('notes')
     .select('*')
     .where('id', id)
@@ -41,8 +56,13 @@ router.get('/notes/:id', (req, res, next) => {
 
 router.post('/notes', (req, res, next) => {
   const body = req.body;
-  const userId = req.user.id;
   const videoId = body.video_id;
+  let userId;
+  if (req.body.user_id === 0) {
+    userId = req.body.user_id;
+  } else {
+    userId = req.user.id;
+  }
   if (!body.note_file) {
     return res.status(400)
       .set({ 'Content-Type': 'plain/text' })
@@ -56,7 +76,7 @@ router.post('/notes', (req, res, next) => {
       video_id: videoId
     })
     .returning('*')
-    .then((newNote) => res.send(newNote))
+    .then(newNote => res.send(newNote))
     .catch(error => console.error(error));
 });
 
@@ -74,7 +94,7 @@ router.patch('/notes/:id', (req, res, next) => {
     .where('user_id', userId)
     .where('id', noteId)
     .returning('*')
-    .then((updatedNote) => res.send(updatedNote))
+    .then(updatedNote => res.send(updatedNote))
     .catch(error => console.error(error));
 });
 

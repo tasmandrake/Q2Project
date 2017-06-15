@@ -94,15 +94,18 @@ $(document).ready(() => {
           type: 'GET',
           url: '/notes/' + query.noteId
         };
-
+        if (query.user === '0') {
+          getOptions.headers = { userid: 0 };
+        }
+        console.log(getOptions);
         $.ajax(getOptions).done((data) => {
           const noteData = data[0].note_file;
 
           $('.cke_wysiwyg_frame')
-              .contents()
-              .children()
-              .children('body')
-              .html(noteData);
+            .contents()
+            .children()
+            .children('body')
+            .html(noteData);
         })
         .catch(err => console.error(err));
 
@@ -178,6 +181,41 @@ $(document).ready(() => {
       });
     });
 
+  $('#share').click(() => {
+    const query = {};
+    window.location.href.split('?')[1]
+      .split('&')
+      .map((e) => {
+        const kv = e.split('=');
+        query[kv[0]] = kv[1];
+      });
+    const videoOptions = {
+      contentType: 'application/json',
+      type: 'GET',
+      url: '/videos/url?vidurl=' + query.id
+    };
+    $.ajax(videoOptions).done((data) => {
+      const shareData = {
+        note_file: $('.cke_wysiwyg_frame')
+          .contents()
+          .children()
+          .children('body')
+          .html(),
+        user_id: 0,
+        video_id: data[0].vidId,
+      };
+      const sharePost = {
+        contentType: 'application/json',
+        data: JSON.stringify(shareData),
+        dataType: 'json',
+        type: 'POST',
+        url: '/notes'
+      };
+      $.ajax(sharePost)
+        .done(noteData => console.log(noteData))
+        .catch(error => console.error(error));
+    });
+  });
 
   function logout() {
     $('#logout').click(() => {

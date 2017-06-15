@@ -4,8 +4,8 @@ $(document).ready(() => {
     contentType: 'application/json',
     type: 'GET',
     url: '/notes',
-    userId: 0
-  }
+    headers: { userid: 0 }
+  };
   $.ajax(sharedOptions)
     .done((data) => {
       for (let i = 0; i < data.length; i++) {
@@ -37,7 +37,6 @@ $(document).ready(() => {
     })
     .fail($xhr => console.error($xhr));
   function makeNoteCards(id, panelTitle, img, description, videoTitle, videoUrl, $row) {
-    const $col = $("<div class=' col-xs-12'></div>");
     const $panel = $("<div class='panel panel-default'></div>");
     const $panelHead = $("<div class='panel-heading'>");
     const $panelBody = $("<div class='panel-body'>");
@@ -55,11 +54,10 @@ $(document).ready(() => {
     $panelBody.text(description);
 
     // appending
-    $col.append($panel);
     $panel.append($panelHead);
     $panel.append($panelBody);
     $panelBody.prepend($panelImg);
-    $row.append($col);
+    $row.append($panel);
   }
 
   function makeCard(title, img, id, description, live) {
@@ -127,8 +125,7 @@ $(document).ready(() => {
     const element = $(e.target).closest('.panel');
     const vidId = element.data('videourl');
     const noteId = element.data('noteid');
-    const description = element.data('description');
-    window.location.href = 'notes.html?id=' + vidId + '&noteId=' + noteId + '&description=' + description;
+    window.location.href = 'notes.html?id=' + vidId + '&noteId=' + noteId + '&user=' + 0;
   });
 
   $('#myvidsrow').click((e) => {
