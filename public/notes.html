@@ -110,7 +110,11 @@
 
         function onPlayerReady(event) {}
 
-        function onPlayerStateChange(event) {}
+        function onPlayerStateChange(event) {
+          console.log('changed')
+
+          console.log(event.target.getCurrentTime())
+        }
 
         function stopVideo() {
           player.stopVideo();
