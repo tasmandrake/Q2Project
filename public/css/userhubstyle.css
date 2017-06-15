@@ -38,15 +38,16 @@ h3 {
   background-image: url('../images/notesplash2.jpg');
   background-size: 100vw;
   background-position: top;
-
 }
 
 a{
   text-decoration: none;
 }
+
 a:hover{
   text-decoration: none;
 }
+
 .urlContainer{
   display: none;
 }
@@ -94,6 +95,35 @@ a:hover{
   text-transform: uppercase;
   border:0;
 }
+.titlea{
+  text-decoration: none;
+  font-size: 15px;
+  font-style: bold;
+  font-family: Special Elite;
+  text-transform: uppercase;
+  color: white;
+}
+
+.titlea:hover{
+  text-decoration: none;
+  font-size: 15px;
+  font-style: bold;
+  font-family: Special Elite;
+  text-transform: uppercase;
+  color: white;
+}
+
+.titlea+.tooltip>.tooltip-inner{
+  background-color: rgb(200, 223, 216);
+  color:black;
+  font-size: 12px;
+  font-family: Special Elite;
+}
+.titlea+.tooltip.top>.tooltip-arrow{
+
+  border-top-color: rgb(200, 223, 216);
+}
+
 
 .panel-body{
   background-image: none;
@@ -109,10 +139,11 @@ a:hover{
 
 .panel-default{
   max-width: 322px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 2%;
+  margin-right: 2%;
   border: 0;
   box-shadow: 5px 5px 5px rgba(0,0,0,.6);
+  display:inline-block;
 }
 
 .descript{
@@ -125,4 +156,5 @@ a:hover{
 .panelImg{
   /*border: 1px solid black;*/
   width:322px;
+  max-height: 181.13px;
 }

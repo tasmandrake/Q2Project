@@ -21,6 +21,8 @@ $(document).ready(() => {
       }
     });
 
+  $('[data-toggle="tooltip"]').tooltip()
+
   $.getJSON('/notes')
     .done((data) => {
       for (let i = 0; i < data.length; i++) {
@@ -42,6 +44,8 @@ $(document).ready(() => {
     const $panelBody = $("<div class='panel-body'>");
     const $panelImg = $("<img class = 'img-responsive center-block panelImg'>");
     const $panelDes = $("<p class='descript'></p>")
+    const $a = $("<a class='titlea' href='#'></a>")
+
 
     // text
     $panel.attr({
@@ -50,8 +54,17 @@ $(document).ready(() => {
       'data-description': (description)
     });
 
+    $a.attr({
+      'title':videoTitle,
+      'data-placement':'top',
+      'data-toggle': 'tooltip'
+    });
+
+    videoTitle = $.trim(videoTitle).substring(0, 25).split(" ").slice(0, 25).join(" ") + "...";
+
+    $a.text(videoTitle)
     $panelImg.attr('src', img);
-    $panelHead.text(videoTitle);
+    $panelHead.append($a);
     $panelDes.text(description);
 
     // appending
@@ -59,20 +72,21 @@ $(document).ready(() => {
     $panel.append($panelBody);
     $panelBody.prepend($panelImg);
     $row.append($panel);
+    $myVidsRow.append($panel);
+    $('[data-toggle="tooltip"]').tooltip()
   }
 
   function makeCard(title, img, id, description, live) {
     // elements
-    const $col = $("<div class=' col-xs-6'></div>");
+
     const $panel = $("<div class='panel panel-default'></div>");
-    const $panelHead = $("<div class='panel-heading'>");
+    const $panelHead = $("<div class='panel-heading pHead text-center'>");
     const $panelBody = $("<div class='panel-body'>");
     const $panelRow = $('#panelRow');
-    const $panelImg = $("<img class = 'img-responsive center-block'>");
-    const $hidden = $("<div class='urlContainer'></div");
+    const $panelImg = $("<img class = 'img-responsive center-block panelImg'>");
+    const $a = $("<a class='titlea' href='#'></a>")
 
     // appending the panels
-    $hidden.text(id);
     $panel.append($panelHead);
     $panel.attr({
       'data-id': id,
@@ -82,13 +96,22 @@ $(document).ready(() => {
       'data-title': title
     });
 
-    $panelHead.text(title);
+    $a.attr({
+      'title':title,
+      'data-placement':'top',
+      'data-toggle': 'tooltip'
+    });
+
+
+    title = $.trim(title).substring(0, 25).split(" ").slice(0, 25).join(" ") + "...";
+
+    $a.text(title)
+    $panelHead.append($a);
     $panelBody.append($panelImg);
-    $panelBody.append($hidden);
     $panel.append($panelBody);
     $panelImg.attr('src', img);
-    $col.append($panel);
-    $panelRow.append($col);
+    $panelRow.append($panel);
+    $('[data-toggle="tooltip"]').tooltip()
   }
 
   $('form').submit((event) => {
