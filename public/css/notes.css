@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Special+Elite');
 
+html {
+  height: 100%;
+}
+
 .navbar-default {
    background-color: rgb(225,225,210);
    border-color: black;
@@ -8,8 +12,21 @@
 
 .background {
   background-image: url('../images/notebook_clock.jpg');
-  background-repeat: no-repeat;
+  /*background-repeat: no-repeat;*/
   background-size: cover;
+}
+
+#left {
+  height: 60vh;
+}
+
+/*#right {
+  height: 100vh;
+}*/
+
+#magic {
+  display: none;
+  /*width: 10vw;*/
 }
 
 #middle {
@@ -25,7 +42,7 @@
   padding-bottom: 6%;
   padding-top: 5%;
 }
-#labels {
+#label1 {
   background-image: url('../images/tornpaper-notape1.png');
   background-position: center;
   background-size: 300px 75px;
@@ -36,6 +53,37 @@
   text-align: center;
 }
 
-#flexbox {
+#label2 {
+  background-image: url('../images/tornpaper-notape1.png');
+  background-position: center;
+  background-size: 300px 75px;
+  background-repeat: no-repeat;
+  font-family: Special Elite;
+  padding-bottom: 0%;
   padding-top: 2%;
+  text-align: center;
+}
+
+#player {
+  height: 100%;
+  width: 100%;
+}
+
+#flexbox {
+  height: 80%;
+  padding-top: 2%;
+}
+
+@media (max-width: 1199px){
+  #label2 {
+    display: none;
+  }
+  #label1 {
+    display: none;
+  }
+  #left {
+    height: 70vh;
+    width: 80vw;
+    padding-bottom: 25px;
+  }
 }
