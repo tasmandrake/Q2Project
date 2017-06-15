@@ -23,7 +23,17 @@ exports.seed = (knex, Promise) => {
           hashed_password: '$2a$10$Ckn0aiWY3kItq0H5WmeY1u1uUhNrUR9ygYACGdNtQnjawI7JH0a7u', // 'securitytest'
           created_at: new Date('2017-06-10 20:30:11 UTC'),
           updated_at: new Date('2017-06-10 20:30:11 UTC')
-        }
+        },
+        {
+          id: 0,
+          first_name: 'Share',
+          last_name: 'Notes',
+          email: 'share',
+          username: 'share',
+          hashed_password: '$2a$10$AbHO8Jnj.Bm3LAZygMWKmeVaQZR2ZuI9gNGXXXR40S0pisqatCQV4',
+          created_at: new Date('2017-06-10 20:30:11 UTC'),
+          updated_at: new Date('2017-06-10 20:30:11 UTC')
+        },
       ]);
     })
     .then(() => {

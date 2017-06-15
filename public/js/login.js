@@ -1,9 +1,10 @@
 $(document).ready(() => {
   hideLogIn();
   hideAcc();
-  hideOAuth();
   login();
   newUser();
+
+  $('a').tooltip();
 
   function login() {
     $('#userLogin').click((event) => {
@@ -62,7 +63,7 @@ $(document).ready(() => {
       } else if (!password) {
         return toasts('Please enter a password');
       } else if (!first_name) {
-        return toasts('Please enter a first name');
+        return toasts('Please enter your first name');
       } else if (!last_name) {
         return toasts('Please enter your last name');
       } else if (!username) {
@@ -101,15 +102,6 @@ $(document).ready(() => {
       $('#info').toggleClass('hidden');
     });
     $('#newUser').on('hide.bs.modal', () => {
-      $('#info').toggleClass('hidden');
-    });
-  }
-
-  function hideOAuth() {
-    $('#oAuth').click(() => {
-      $('#info').toggleClass('hidden');
-    });
-    $('#oauth').on('hide.bs.modal', () => {
       $('#info').toggleClass('hidden');
     });
   }

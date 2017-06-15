@@ -1,5 +1,25 @@
 $(document).ready(() => {
   logout();
+  const sharedOptions = {
+    contentType: 'application/json',
+    type: 'GET',
+    url: '/notes',
+    headers: { userid: 0 }
+  };
+  $.ajax(sharedOptions)
+    .done((data) => {
+      for (let i = 0; i < data.length; i++) {
+        const d = data[i];
+        const descrip = d.description;
+        const id = d.id;
+        const img = d.img;
+        const noteTitle = d.note_title;
+        const vidTitle = d.video_title;
+        const vidUrl = d.video_url;
+        const $sharedVidsRow = $('#sharedvidsrow');
+        makeNoteCards(id, noteTitle, img, descrip, vidTitle, vidUrl, $sharedVidsRow);
+      }
+    });
 
   $('[data-toggle="tooltip"]').tooltip()
 
@@ -13,13 +33,12 @@ $(document).ready(() => {
         const noteTitle = d.note_title;
         const vidTitle = d.video_title;
         const vidUrl = d.video_url;
-        makeNoteCards(id, noteTitle, img, descrip, vidTitle, vidUrl);
+        const $myVidsRow = $('#myvidsrow');
+        makeNoteCards(id, noteTitle, img, descrip, vidTitle, vidUrl, $myVidsRow);
       }
     })
     .fail($xhr => console.error($xhr));
-
-  function makeNoteCards(id, panelTitle, img, description, videoTitle, videoUrl) {
-    const $myVidsRow = $('#myvidsrow');
+  function makeNoteCards(id, panelTitle, img, description, videoTitle, videoUrl, $row) {
     const $panel = $("<div class='panel panel-default'></div>");
     const $panelHead = $("<div class='panel-heading pHead text-center'>");
     const $panelBody = $("<div class='panel-body'>");
@@ -52,6 +71,7 @@ $(document).ready(() => {
     $panel.append($panelHead);
     $panel.append($panelBody);
     $panelBody.prepend($panelImg);
+    $row.append($panel);
     $myVidsRow.append($panel);
     $('[data-toggle="tooltip"]').tooltip()
   }
@@ -124,8 +144,14 @@ $(document).ready(() => {
         console.error(err);
       });
     }
-
   });// end submit
+
+  $('#sharedvidsrow').click((e) => {
+    const element = $(e.target).closest('.panel');
+    const vidId = element.data('videourl');
+    const noteId = element.data('noteid');
+    window.location.href = 'notes.html?id=' + vidId + '&noteId=' + noteId + '&user=' + 0;
+  });
 
   $('#myvidsrow').click((e) => {
     const element = $(e.target).closest('.panel');

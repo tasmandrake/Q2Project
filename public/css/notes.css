@@ -81,3 +81,22 @@ html {
     padding-bottom: 25px;
   }
 }
+
+
+
+.btn {
+  padding-top: 15px;
+  border-radius: 10px;
+  background: rgb(220,212,175);
+  font-family: Special Elite;
+  font-size: 25px;
+  box-shadow: 2px 2px 2px black;
+  border-color: black;
+  width: 400px;
+}
+
+.btn:hover {
+  background: rgb(90,130,118);
+  color: white;
+  border-color: black;
+}
