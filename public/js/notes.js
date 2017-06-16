@@ -122,7 +122,7 @@ $(document).ready(() => {
                 .children()
                 .children('body')
                 .children()[index])
-              .attr('data-time', time);
+                .attr('data-time', time);
             $($('.cke_wysiwyg_frame')
                 .contents()
                 .children()
@@ -159,7 +159,7 @@ $(document).ready(() => {
                 .children()
                 .children('body')
                 .children()[index])
-              .attr('data-time', time);
+                .attr('data-time', time);
             $($('.cke_wysiwyg_frame')
                 .contents()
                 .children()
