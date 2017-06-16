@@ -4,9 +4,9 @@
 you take notes alongside of a video. We stamp your notes to the time in the
 video so you can easily reference back to that moment when you made the note.
 Type along to lectures or live streams, then share those notes and videos with a
-friend.
+classmate or friend.
 
-First, create an account! Then, log in to see a your profile page that contains
+First, create an account! Then, log in to see your profile page that contains
 any videos and notes that you have saved and shared.
 ![jump_note_login](/public/images/jump_note_login.png)
 
