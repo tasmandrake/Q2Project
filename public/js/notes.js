@@ -7,7 +7,7 @@ $(document).ready(() => {
     const hardTag = new Promise((resolve) => {
       window.setTimeout(() => {
         resolve($('.cke_wysiwyg_frame').contents().children().children('body'));
-      }, 1000);
+      }, 3000);
     });
     return hardTag;
   }
