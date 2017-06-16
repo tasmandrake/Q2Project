@@ -72,7 +72,7 @@ router.post('/videos', (req, res, next) => {
     .select('video_url', 'id')
     .where('video_url', req.body.video_url)
     .then((data) => {
-      let isThere = data.length;
+      const isThere = data.length;
       if (isThere) {
         return res.status(200).send('' + data[0].id);
       } else {

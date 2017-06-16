@@ -100,3 +100,25 @@ html {
   color: white;
   border-color: black;
 }
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: rgba(51, 87, 76, 0.8);
+    color: #FFF;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 2000;
+    left: 75%;
+    bottom: 45%;
+}
+
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}

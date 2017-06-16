@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Notes</title>
+  <title>Jump Note</title>
 
   <!-- jQuery CDN -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -30,13 +30,11 @@
   <link rel="icon" href="images/tabpen.png">
 
 </head>
-
 <body class="background">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#jumpNoteNav" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -44,9 +42,7 @@
       </button>
         <a class="navbar-brand">JumpNote</a>
       </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="collapse navbar-collapse" id="jumpNoteNav">
         <ul class="nav navbar-nav">
           <li><a href="about.html">About</a></li>
           <li><a href="userhub.html">Profile</a></li>
@@ -56,9 +52,7 @@
         <form class="navbar-form navbar-left">
         </form>
       </div>
-      <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container-fluid -->
   </nav>
 
   <div class="container-fluid">
@@ -127,6 +121,7 @@
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col-xs-12 text-center">
         <br>
@@ -135,7 +130,11 @@
         <button type="button" name="share" class="btn btn-default" id="share">Share</button>
       </div>
     </div>
+
   </div>
+
+  <div id="snackbar"></div>
+
   <script type="text/javascript">
     initSample();
   </script>
