@@ -66,7 +66,13 @@ $(document).ready(() => {
                 .children()
                 .children('body')
                 .children()[index])
-              .attr('data-time', time);
+                .attr('data-time', time);
+            $($('.cke_wysiwyg_frame')
+                .contents()
+                .children()
+                .children('body')
+                .children()[index])
+                .addClass('time');
             index++;
 
             const data = {
@@ -97,7 +103,6 @@ $(document).ready(() => {
         if (query.user === '0') {
           getOptions.headers = { userid: 0 };
         }
-        console.log(getOptions);
         $.ajax(getOptions).done((data) => {
           const noteData = data[0].note_file;
 
@@ -112,13 +117,18 @@ $(document).ready(() => {
         done.keydown((e) => {
           if (e.which === 13) {
             const time = player.getCurrentTime();
-            console.log(time);
             $($('.cke_wysiwyg_frame')
                 .contents()
                 .children()
                 .children('body')
                 .children()[index])
               .attr('data-time', time);
+            $($('.cke_wysiwyg_frame')
+                .contents()
+                .children()
+                .children('body')
+                .children()[index])
+                .addClass('time');
             index++;
 
             const data = {
@@ -150,6 +160,12 @@ $(document).ready(() => {
                 .children('body')
                 .children()[index])
               .attr('data-time', time);
+            $($('.cke_wysiwyg_frame')
+                .contents()
+                .children()
+                .children('body')
+                .children()[index])
+                .addClass('time');
             index++;
 
             const data = {
@@ -174,7 +190,7 @@ $(document).ready(() => {
       }
 
       done.click((e) => {
-        const $tag = $(e.target).attr('data-time');
+        const $tag = $(e.target).closest('.time').attr('data-time');
         const time = Math.round($tag);
         if (time) {
           player.seekTo(time, true).playVideo();
@@ -213,7 +229,7 @@ $(document).ready(() => {
         url: '/notes'
       };
       $.ajax(sharePost)
-        .done(noteData => console.log(noteData))
+        .done(() => toasts('Your video has been shared'))
         .catch(error => console.error(error));
     });
   });
@@ -248,4 +264,13 @@ $(document).ready(() => {
     }
   });
 
+  function toasts(message) {
+    console.log('toast');
+    const $snackbar = $('#snackbar');
+    $snackbar.text(message);
+    $snackbar.addClass('show');
+    setTimeout(() => {
+      $snackbar.toggleClass('show');
+    }, 3000);
+  }
 });
