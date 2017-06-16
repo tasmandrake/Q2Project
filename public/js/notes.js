@@ -60,18 +60,17 @@ $(document).ready(() => {
         done.keydown((e) => {
           if (e.which === 13) {
             const time = player.getCurrentTime();
-
             $($('.cke_wysiwyg_frame')
                 .contents()
                 .children()
                 .children('body')
-                .children()[index])
+                .children().last().prev())
                 .attr('data-time', time);
             $($('.cke_wysiwyg_frame')
                 .contents()
                 .children()
                 .children('body')
-                .children()[index])
+                .children().last().prev())
                 .addClass('time');
             index++;
 
@@ -121,13 +120,13 @@ $(document).ready(() => {
                 .contents()
                 .children()
                 .children('body')
-                .children()[index])
+                .children().last().prev())
                 .attr('data-time', time);
             $($('.cke_wysiwyg_frame')
                 .contents()
                 .children()
                 .children('body')
-                .children()[index])
+                .children().last().prev())
                 .addClass('time');
             index++;
 
@@ -158,13 +157,13 @@ $(document).ready(() => {
                 .contents()
                 .children()
                 .children('body')
-                .children()[index])
+                .children().last().prev())
                 .attr('data-time', time);
             $($('.cke_wysiwyg_frame')
                 .contents()
                 .children()
                 .children('body')
-                .children()[index])
+                .children().last().prev())
                 .addClass('time');
             index++;
 
