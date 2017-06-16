@@ -23,6 +23,8 @@ Learn about the creators of JumpNote.
 
 [Waffle](https://waffle.io/speichs/Q2Project)
 
+[Video Demo](https://youtu.be/86waGNEmo5Q)
+
 * [Jeff Kerpan](https://github.com/JeffKerpan)
 * [Nick Lawrence](https://github.com/wallytreats)
 * [Sean Eichenberger](https://github.com/speichs/)
