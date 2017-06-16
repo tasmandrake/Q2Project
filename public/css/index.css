@@ -49,8 +49,8 @@ form {
   background-color: rgb(197,12,60);
   color: white;
   background-image: none;
-  letter-spacing: 0.1em;
-  font-family: times;
+  letter-spacing: 0.12em;
+  /*font-family: times;*/
 }
 
 #userLogin:hover{
