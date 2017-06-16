@@ -21,7 +21,7 @@ $(document).ready(() => {
       }
     });
 
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip();
 
   $.getJSON('/notes')
     .done((data) => {
@@ -43,8 +43,8 @@ $(document).ready(() => {
     const $panelHead = $("<div class='panel-heading pHead text-center'>");
     const $panelBody = $("<div class='panel-body'>");
     const $panelImg = $("<img class = 'img-responsive center-block panelImg'>");
-    const $panelDes = $("<p class='descript'></p>")
-    const $a = $("<a class='titlea' href='#'></a>")
+    const $panelDes = $("<p class='descript'></p>");
+    const $a = $("<a class='titlea' href='#'></a>");
 
 
     // text
@@ -55,14 +55,18 @@ $(document).ready(() => {
     });
 
     $a.attr({
-      'title':videoTitle,
-      'data-placement':'top',
+      'title': videoTitle,
+      'data-placement': 'top',
       'data-toggle': 'tooltip'
     });
 
-    videoTitle = $.trim(videoTitle).substring(0, 25).split(" ").slice(0, 25).join(" ") + "...";
+    videoTitle = $.trim(videoTitle)
+                  .substring(0, 25)
+                  .split(' ')
+                  .slice(0, 25)
+                  .join(' ') + '...';
 
-    $a.text(videoTitle)
+    $a.text(videoTitle);
     $panelImg.attr('src', img);
     $panelHead.append($a);
     $panelDes.text(description);
@@ -72,7 +76,7 @@ $(document).ready(() => {
     $panel.append($panelBody);
     $panelBody.prepend($panelImg);
     $row.append($panel);
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
   }
 
   function makeCard(title, img, id, description, live) {
@@ -83,7 +87,7 @@ $(document).ready(() => {
     const $panelBody = $("<div class='panel-body'>");
     const $panelRow = $('#panelRow');
     const $panelImg = $("<img class = 'img-responsive center-block panelImg'>");
-    const $a = $("<a class='titlea' href='#'></a>")
+    const $a = $("<a class='titlea' href='#'></a>");
 
     // appending the panels
     $panel.append($panelHead);
@@ -96,21 +100,25 @@ $(document).ready(() => {
     });
 
     $a.attr({
-      'title':title,
-      'data-placement':'top',
+      'title': title,
+      'data-placement': 'top',
       'data-toggle': 'tooltip'
     });
 
 
-    title = $.trim(title).substring(0, 25).split(" ").slice(0, 25).join(" ") + "...";
+    title = $.trim(title)
+             .substring(0, 25)
+             .split(' ')
+             .slice(0, 25)
+             .join(' ') + '...';
 
-    $a.text(title)
+    $a.text(title);
     $panelHead.append($a);
     $panelBody.append($panelImg);
     $panel.append($panelBody);
     $panelImg.attr('src', img);
     $panelRow.append($panel);
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
   }
 
   $('form').submit((event) => {
@@ -121,7 +129,6 @@ $(document).ready(() => {
       const $xhr = $.getJSON('https://www.googleapis.com/youtube/v3/search/?part=snippet&q=' + text + '&maxResults=12&key=AIzaSyC0b4jxH6E1DbtJm3S_ZOZx5ahcOmthPDk');
       $xhr.done((data) => {
         const vids = data.items;
-        console.log(vids);
         if ($xhr.status !== 200) {
           return;
         } else {

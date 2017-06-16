@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
-  <title>Userhub</title>
+  <title>Jump Note</title>
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
   <!-- jQuery CDN -->
-  <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -27,83 +25,83 @@
   <link rel="icon" href="images/tabpen.png">
 
 </head>
-  <body class="background">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+
+<body class="background">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#jumpNoteNav" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand">JumpNote</a>
-        </div>
+        <a class="navbar-brand">JumpNote</a>
+      </div>
+      <div class="collapse navbar-collapse" id="jumpNoteNav">
+        <ul class="nav navbar-nav">
+          <li><a href="about.html">About</a></li>
+          <li class="active"><a href="#">Profile<span class="sr-only">(current)</span></a></li>
+          <li><a href="index.html" id="logout">Sign out</a></li>
+        </ul>
+        <form class="navbar-form navbar-left">
+        </form>
+      </div>
+    </div>
+  </nav>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="about.html">About</a></li>
-            <li class="active"><a href="#">Profile<span class="sr-only">(current)</span></a></li>
-            <li><a href="index.html" id="logout">Sign out</a></li>
-          </ul>
-          <form class="navbar-form navbar-left">
-          </form>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <form action="#">
+          <div class="form-group">
+            <input type="text" class="form-control" id="search" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default col-xs-6 col-xs-offset-3">Submit</button>
+        </form>
+        <br>
+        <br>
+        <br>
+      </div>
+    </div>
 
-    <div class="container">
-      <!--search from row -->
-      <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
-          <form action="#">
-            <div class="form-group">
-              <!-- <label for="search"></label> -->
-              <input type="text" class="form-control" id="search" placeholder="Search">
-            </div>
-              <button type="submit" class="btn btn-default col-xs-6 col-xs-offset-3">Submit</button>
-          </form>
-          <!-- <label for="search"></label> -->
-          <br>
-          <br>
-          <br>
-        </div><!-- end column-->
+    <!--results title row-->
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3">
+        <h3 id="resultspg" class="text-center col-xs-offset-3">Results</h3>
       </div>
-      <!--results title row-->
-      <div class="row">
-        <div class="col-xs-6 col-xs-offset-3">
-          <h3 id="resultspg" class="text-center col-xs-offset-3">Results</h3>
-        </div>
+    </div>
+
+    <!--results video row-->
+    <div class="row">
+      <div id="panelRow" class="col-xs-12">
       </div>
-      <!--results video row-->
-      <div class="row" >
-        <div id ="panelRow" class="col-xs-12">
-        </div>
+    </div>
+
+    <!-- myvids & shared vids title row -->
+    <div class="row">
+      <div id="myvids" class="col-xs-5">
+        <h3 class="text-center">My Videos</h3>
       </div>
-      <!-- myvids & shared vids title row -->
-      <div class="row">
-        <div id="myvids" class="col-xs-5">
-          <h3 class="text-center">My Videos</h3>
-        </div>
-        <div class="col-xs-2">
-        </div>
-        <div id="sharedvids" class="col-xs-5">
-          <h3 class="text-center">Shared Videos</h3>
-        </div>
+      <div class="col-xs-2">
       </div>
-      <!--video row -->
-      <div class="row">
-        <div id='myvidsrow' class="col-xs-5 text-center">
-            <!--my videos here -->
-        </div>
-        <div class="col-xs-2">
-        </div>
-        <div id='sharedvidsrow' class="col-xs-5">
-          <!--shared videos here-->
-        </div>
+      <div id="sharedvids" class="col-xs-5">
+        <h3 class="text-center">Shared Videos</h3>
       </div>
-    </div><!--END container -->
-  </body>
+    </div>
+
+    <!--video row -->
+    <div class="row">
+      <div id="myvidsrow" class="col-xs-5 text-center">
+        <!--my videos here -->
+      </div>
+      <div class="col-xs-2">
+      </div>
+      <div id="sharedvidsrow" class="col-xs-5">
+        <!--shared videos here-->
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>

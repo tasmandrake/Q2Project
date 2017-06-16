@@ -3,9 +3,6 @@ $(document).ready(() => {
   hideAcc();
   login();
   newUser();
-
-  $('a').tooltip();
-
   function login() {
     $('#userLogin').click((event) => {
       event.preventDefault();

@@ -11,7 +11,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// The toolbar groups arrangement, optimized for a single toolbar row.
 	config.toolbarGroups = [
 		{ name: 'basicstyles', groups: [ 'basicstyles'] },
-		{ name: 'paragraph',   groups: [ 'list', 'indent'] },
+		{ name: 'paragraph' },
 		{ name: 'styles' },
 	];
 
