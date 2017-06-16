@@ -71,3 +71,7 @@
   height: 200px;
   width: 200px;
 }
+
+.caption br {
+  line-height: 30px;
+}
