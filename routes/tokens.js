@@ -52,14 +52,16 @@ router.post('/token', (req, res, next) => {
 
         res.cookie('token', token, { httpOnly: true }).send(userInfo);
       } else {
+        console.log('why');
         res.status(400)
             .set({ 'Content-Type': 'plain/text' })
             .send('Bad email or password');
       }
-    }).catch(() => {
+    }).catch((err) => {
       res.status(400)
           .set({ 'Content-Type': 'plain/text' })
           .send('Bad email or password');
+          console.log(err);
     });
 });
 

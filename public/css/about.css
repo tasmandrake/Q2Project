@@ -64,6 +64,7 @@
     border: black;
     box-shadow: 4px 4px 4px #61605f;
     min-height: 630.84px;
+    max-height: 630.84px;
 }
 
 .aboutpic {
@@ -73,5 +74,9 @@
 }
 
 .caption br {
-  line-height: 30px;
+  line-height: 15px;
+}
+
+#alignFix {
+  margin-top: 10px;
 }
