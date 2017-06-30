@@ -93,8 +93,6 @@
 
             function onYouTubeIframeAPIReady() {
               player = new YT.Player('player', {
-                // height: '450',
-                // width: '738',
                 videoId: query.id,
                 events: {
                   'onReady': onPlayerReady,
@@ -102,15 +100,8 @@
                 }
               });
             }
-
             function onPlayerReady(event) {}
-
-            function onPlayerStateChange(event) {
-              console.log('changed')
-
-              console.log(event.target.getCurrentTime())
-            }
-
+            function onPlayerStateChange(event) {}
             function stopVideo() {
               player.stopVideo();
             }

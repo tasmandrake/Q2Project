@@ -6,74 +6,59 @@ $(document).ready(() => {
   function findNotes() {
     const hardTag = new Promise((resolve) => {
       window.setTimeout(() => {
-        resolve($('.cke_wysiwyg_frame').contents().children().children('body'));
-      }, 3000);
+        resolve(
+          $('.cke_wysiwyg_frame')
+          .contents()
+          .children()
+          .children('body')
+        );
+      }, 1500);
     });
     return hardTag;
   }
   findNotes()
     .then((done) => {
-      const query = {};
-      window.location.href.split('?')[1]
-        .split('&')
-        .map((e) => {
-          const kv = e.split('=');
-          query[kv[0]] = kv[1];
-        });
+      windowLocation();
       if (!query.noteId) {
         const videoOptions = {
           contentType: 'application/json',
           type: 'GET',
           url: '/videos/url?vidurl=' + query.id
         };
-        $.ajax(videoOptions).done((data) => {
-          if (data[0].note_file) {
-            $('.cke_wysiwyg_frame')
-              .contents()
-              .children()
-              .children('body')
-              .html(data[0].note_file);
-            $('#right').attr('data-noteid', data[0].notesId);
-          } else {
-            const noteData = {
-              video_id: data[0].vidId,
-              note_file: $('.cke_wysiwyg_frame')
+        $.ajax(videoOptions)
+          .done((data) => {
+            if (data[0].note_file) {
+              $('.cke_wysiwyg_frame')
                 .contents()
                 .children()
                 .children('body')
-                .html()
-            };
-            const input = {
-              contentType: 'application/json',
-              data: JSON.stringify(noteData),
-              dataType: 'json',
-              type: 'POST',
-              url: '/notes'
-            };
-            $.ajax(input)
-              .done((returning) => {
-                $('#right').attr('data-noteid', returning[0].id);
-              })
-              .catch(error => console.error(error));
-          }
+                .html(data[0].note_file);
+              $('#right').attr('data-noteid', data[0].notesId);
+            } else {
+              const noteData = {
+                video_id: data[0].vidId,
+                note_file: $('.cke_wysiwyg_frame')
+                  .contents()
+                  .children()
+                  .children('body')
+                  .html()
+              };
+              const input = {
+                contentType: 'application/json',
+                data: JSON.stringify(noteData),
+                dataType: 'json',
+                type: 'POST',
+                url: '/notes'
+              };
+              $.ajax(input)
+                .done((returning) => {
+                  $('#right').attr('data-noteid', returning[0].id);
+                })
+                .catch(error => console.error(error));
+            }
         });
         done.keydown((e) => {
           if (e.which === 13) {
-            const time = player.getCurrentTime();
-            $($('.cke_wysiwyg_frame')
-                .contents()
-                .children()
-                .children('body')
-                .children().last().prev())
-                .attr('data-time', time);
-            $($('.cke_wysiwyg_frame')
-                .contents()
-                .children()
-                .children('body')
-                .children().last().prev())
-                .addClass('time');
-            index++;
-
             const data = {
               note_file: $('.cke_wysiwyg_frame')
                 .contents()
@@ -88,9 +73,7 @@ $(document).ready(() => {
               type: 'PATCH',
               url: '/notes/' + $('#right').data('noteid')
             };
-            $.ajax(notesOptions)
-              .done()
-              .catch(error => console.error(error));
+            timeStamp(notesOptions);
           }
         });
       } else if (query.noteId) {
@@ -102,34 +85,21 @@ $(document).ready(() => {
         if (query.user === '0') {
           getOptions.headers = { userid: 0 };
         }
-        $.ajax(getOptions).done((data) => {
-          const noteData = data[0].note_file;
+        $.ajax(getOptions)
+          .done((data) => {
+            const noteData = data[0].note_file;
 
-          $('.cke_wysiwyg_frame')
-            .contents()
-            .children()
-            .children('body')
-            .html(noteData);
-        })
+            $('.cke_wysiwyg_frame')
+              .contents()
+              .children()
+              .children('body')
+              .html(noteData);
+          }
+        )
         .catch(err => console.error(err));
 
         done.keydown((e) => {
           if (e.which === 13) {
-            const time = player.getCurrentTime();
-            $($('.cke_wysiwyg_frame')
-                .contents()
-                .children()
-                .children('body')
-                .children().last().prev())
-                .attr('data-time', time);
-            $($('.cke_wysiwyg_frame')
-                .contents()
-                .children()
-                .children('body')
-                .children().last().prev())
-                .addClass('time');
-            index++;
-
             const data = {
               note_file: $('.cke_wysiwyg_frame')
                 .contents()
@@ -144,46 +114,7 @@ $(document).ready(() => {
               type: 'PATCH',
               url: '/notes/' + query.noteId
             };
-            $.ajax(notesOptions)
-              .done()
-              .catch(error => console.error(error));
-          }
-        });
-      } else {
-        done.keydown((e) => {
-          if (e.which === 13) {
-            const time = player.getCurrentTime();
-            $($('.cke_wysiwyg_frame')
-                .contents()
-                .children()
-                .children('body')
-                .children().last().prev())
-                .attr('data-time', time);
-            $($('.cke_wysiwyg_frame')
-                .contents()
-                .children()
-                .children('body')
-                .children().last().prev())
-                .addClass('time');
-            index++;
-
-            const data = {
-              note_file: $('.cke_wysiwyg_frame')
-                .contents()
-                .children()
-                .children('body')
-                .html()
-            };
-            const notesOptions = {
-              contentType: 'application/json',
-              data: JSON.stringify(data),
-              dataType: 'json',
-              type: 'PATCH',
-              url: '/notes/' + $('#right').data('noteid')
-            };
-            $.ajax(notesOptions).done().catch((error) => {
-              console.error(error);
-            });
+            timeStamp(notesOptions);
           }
         });
       }
@@ -198,13 +129,7 @@ $(document).ready(() => {
     });
 
   $('#share').click(() => {
-    const query = {};
-    window.location.href.split('?')[1]
-      .split('&')
-      .map((e) => {
-        const kv = e.split('=');
-        query[kv[0]] = kv[1];
-      });
+    windowLocation();
     const videoOptions = {
       contentType: 'application/json',
       type: 'GET',
@@ -233,19 +158,6 @@ $(document).ready(() => {
     });
   });
 
-  function logout() {
-    $('#logout').click(() => {
-      const options = {
-        contentType: 'application/json',
-        type: 'DELETE',
-        url: '/token'
-      };
-      $.ajax(options)
-        .done(() => {
-          window.location.href = '/index.html';
-        });
-    });
-  }
 
   $(window).on('load', () => {
     const viewportWidth = $(window).width();
@@ -262,6 +174,55 @@ $(document).ready(() => {
       $('#left').removeClass('col-xs-offset-1');
     }
   });
+
+  function timeStamp(notesOptions) {
+    const time = player.getCurrentTime();
+    $($('.cke_wysiwyg_frame')
+        .contents()
+        .children()
+        .children('body')
+        .children()
+        .last()
+        .prev())
+        .attr('data-time', time);
+    $($('.cke_wysiwyg_frame')
+        .contents()
+        .children()
+        .children('body')
+        .children()
+        .last()
+        .prev())
+        .addClass('time');
+    index++;
+
+    $.ajax(notesOptions)
+      .done()
+      .catch(error => console.error(error));
+  }
+
+  function windowLocation() {
+    const query = {};
+    window.location.href.split('?')[1]
+      .split('&')
+      .map((e) => {
+        const kv = e.split('=');
+        query[kv[0]] = kv[1];
+      });
+  }
+
+  function logout() {
+    $('#logout').click(() => {
+      const options = {
+        contentType: 'application/json',
+        type: 'DELETE',
+        url: '/token'
+      };
+      $.ajax(options)
+      .done(() => {
+        window.location.href = '/index.html';
+      });
+    });
+  }
 
   function toasts(message) {
     console.log('toast');

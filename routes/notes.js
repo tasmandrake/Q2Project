@@ -58,19 +58,13 @@ router.post('/notes', (req, res, next) => {
   const body = req.body;
   const videoId = body.video_id;
 
-  //inserted to test
-  console.log('videoID',videoId);
   let userId;
   if (req.body.user_id === 0) {
     userId = req.body.user_id;
   } else {
     userId = req.user.id;
   }
-  //inserted to test
-  console.log('userId',userId);
   if (!body.note_file) {
-    //inserted for testing
-    console.log('no notes')
     return res.status(400)
       .set({ 'Content-Type': 'plain/text' })
       .send('Note must not be empty');

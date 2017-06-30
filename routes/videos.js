@@ -49,9 +49,7 @@ router.get('/videos/:id', (req, res, next) => {
     .then((videos) => {
       if (!videos.length) {
         return res.status(404)
-          .set({
-            'Content-Type': 'plain/text'
-          })
+          .set({ 'Content-Type': 'plain/text' })
           .send('Not Found');
       }
       res.send(videos);
@@ -62,9 +60,7 @@ router.post('/videos', (req, res, next) => {
   const body = req.body;
   if (!body.video_url) {
     return res.status(400)
-      .set({
-        'Content-Type': 'plain/text'
-      })
+      .set({ 'Content-Type': 'plain/text'   })
       .send('Video URL must not be blank');
   }
 

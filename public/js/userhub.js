@@ -4,7 +4,9 @@ $(document).ready(() => {
     contentType: 'application/json',
     type: 'GET',
     url: '/notes',
-    headers: { userid: 0 }
+    headers: {
+      userid: 0
+    }
   };
   $.ajax(sharedOptions)
     .done((data) => {
@@ -38,6 +40,7 @@ $(document).ready(() => {
       }
     })
     .fail($xhr => console.error($xhr));
+
   function makeNoteCards(id, panelTitle, img, description, videoTitle, videoUrl, $row) {
     const $panel = $("<div class='panel panel-default'></div>");
     const $panelHead = $("<div class='panel-heading pHead text-center'>");
@@ -46,8 +49,6 @@ $(document).ready(() => {
     const $panelDes = $("<p class='descript'></p>");
     const $a = $("<a class='titlea' href='#'></a>");
 
-
-    // text
     $panel.attr({
       'data-noteid': id,
       'data-videoUrl': videoUrl,
@@ -61,17 +62,16 @@ $(document).ready(() => {
     });
 
     videoTitle = $.trim(videoTitle)
-                  .substring(0, 25)
-                  .split(' ')
-                  .slice(0, 25)
-                  .join(' ') + '...';
+      .substring(0, 25)
+      .split(' ')
+      .slice(0, 25)
+      .join(' ') + '...';
 
     $a.text(videoTitle);
     $panelImg.attr('src', img);
     $panelHead.append($a);
     $panelDes.text(description);
 
-    // appending
     $panel.append($panelHead);
     $panel.append($panelBody);
     $panelBody.prepend($panelImg);
@@ -80,8 +80,6 @@ $(document).ready(() => {
   }
 
   function makeCard(title, img, id, description, live) {
-    // elements
-
     const $panel = $("<div class='panel panel-default'></div>");
     const $panelHead = $("<div class='panel-heading pHead text-center'>");
     const $panelBody = $("<div class='panel-body'>");
@@ -89,7 +87,6 @@ $(document).ready(() => {
     const $panelImg = $("<img class = 'img-responsive center-block panelImg'>");
     const $a = $("<a class='titlea' href='#'></a>");
 
-    // appending the panels
     $panel.append($panelHead);
     $panel.attr({
       'data-id': id,
@@ -105,12 +102,11 @@ $(document).ready(() => {
       'data-toggle': 'tooltip'
     });
 
-
     title = $.trim(title)
-             .substring(0, 25)
-             .split(' ')
-             .slice(0, 25)
-             .join(' ') + '...';
+      .substring(0, 25)
+      .split(' ')
+      .slice(0, 25)
+      .join(' ') + '...';
 
     $a.text(title);
     $panelHead.append($a);
@@ -126,7 +122,7 @@ $(document).ready(() => {
     event.preventDefault();
     const text = $('#search').val().replace(' ', '+');
     if (text.length > 0) {
-      const $xhr = $.getJSON('https://www.googleapis.com/youtube/v3/search/?part=snippet&q=' + text + '&maxResults=12&key=AIzaSyC0b4jxH6E1DbtJm3S_ZOZx5ahcOmthPDk');
+      const $xhr = $.getJSON('https://www.googleapis.com/youtube/v3/search/?part=snippet&q=' + text + '&maxResults=12&key=AIzaSyDfn1macKBkdTwflQ2VdPvZ-0EblTF8z-c');
       $xhr.done((data) => {
         const vids = data.items;
         if ($xhr.status !== 200) {
@@ -150,7 +146,7 @@ $(document).ready(() => {
         console.error(err);
       });
     }
-  });// end submit
+  });
 
   $('#sharedvidsrow').click((e) => {
     const element = $(e.target).closest('.panel');
@@ -193,14 +189,12 @@ $(document).ready(() => {
       window.location.href = 'notes.html?id=' + id + '&live=' + live;
     });
   });
-  // end panelRow Click
 
   $('.btn').click(() => {
     $('#resultspg').fadeIn();
     $('.btn').css('background', 'rgb(220,212,175)');
     $('.btn').css('color', 'black');
   });
-  // end click to show results label
 
   function logout() {
     $('#logout').click(() => {
